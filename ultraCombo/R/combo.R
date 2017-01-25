@@ -15,7 +15,7 @@
 #'	i<-ceiling(runif(1)*choose(n2,k2))
 #'	combo<-createCombo(combnGen::combnG(i,n2,k2),n1,k1)
 #'	combo
-#'	combo$Gen(seq_along(combo$indices))
+#'	combo$Gen(seq(combo$len))
 #'@importFrom combnGen is.valid.nk is.valid.index combnGG 
 #' @export
 createCombo <- function(
@@ -25,8 +25,9 @@ createCombo <- function(
 ){
 	is.valid.nk(n,k)
 	is.valid.index(i,n,k)
+	i<-multiUnion(i)
 	combnGen<-combnGG(n,k)
-	out<-list(i=i,
+	list(i=i,
 		len=length(i),
 		n=n,
 		k=k,
@@ -55,7 +56,7 @@ setdiff.combo <- function(a,b){
 	if(is.combo.compatible(a,b)){
 		n<-a$n
 		k<-a$k
-		i<-setdiff(a$indices,b$indices)
+		i<-setdiff(a$i,b$i)
 		return(createCombo(i,n,k))
 	}else{
 		stop("mismatched input")
@@ -68,7 +69,7 @@ intersect.combo <- function(a,b){
 	if(is.combo.compatible(a,b)){
 		n<-a$n
 		k<-a$k
-		i<-intersect(a$indices,b$indices)
+		i<-intersect(a$i,b$i)
 		return(createCombo(i,n,k))
 	}else{
 		stop("mismatched input")
@@ -80,7 +81,7 @@ intersect.combo <- function(a,b){
 union.combo <- function(...){
 	l<-list(...)
 	if(is.combo.compatible(...)){
-		i<-do.call(multiUnion,lapply(l,function(x)x$indices))
+		i<-do.call(multiUnion,lapply(l,function(x)x$i))
 		n<-l[[1]]$n
 		k<-l[[2]]$k
 		return(createCombo(i,n,k))

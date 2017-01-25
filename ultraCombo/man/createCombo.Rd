@@ -31,6 +31,6 @@ k2<-5
 i<-ceiling(runif(1)*choose(n2,k2))
 combo<-createCombo(combnGen::combnG(i,n2,k2),n1,k1)
 combo
-combo$Gen(seq_along(combo$indices))
+combo$Gen(seq(combo$len))
 }
 
