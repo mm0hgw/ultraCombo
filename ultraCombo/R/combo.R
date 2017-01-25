@@ -1,7 +1,7 @@
 #' createCombo
 #'	@description Create a combination object.
 #'	@param indices A vector of combination indices.
-#'	@inheritParams is.valid.nk is.valid.index 
+#'	@inheritParams combnGen::is.valid.nk combnGen::is.valid.index 
 #'	@return A list with the following elements:\cr
 #'		$i The indices of the combination set\cr
 #'		$n The n of the combination set.\cr
