@@ -6,7 +6,19 @@
 \usage{
 setdiff.combo(a, b)
 }
+\arguments{
+\item{a, b}{one combo and one combo or vector}
+}
 \description{
 setdiff.combo
+}
+\examples{
+a<-createCombo(seq(4),4,2)
+b<-createCombo(seq(3)+2,4,2)
+a$i
+b$i
+stopifnot(all(c(1,2)==setdiff.combo(a,b)$i))
+stopifnot(all(c(1,4)==setdiff.combo(a,seq(2)+1)$i))
+stopifnot(all(c(1,2,6)==setdiff.combo(seq(6),b)$i))
 }
 

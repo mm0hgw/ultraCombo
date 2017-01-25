@@ -6,7 +6,21 @@
 \usage{
 intersect.combo(a, b)
 }
+\arguments{
+\item{a}{one combo and one combo or vector}
+
+\item{b}{one combo and one combo or vector}
+}
 \description{
 intersect.combo
+}
+\examples{
+a<-createCombo(seq(4),4,2)
+b<-createCombo(seq(3)+2,4,2)
+a$i
+b$i
+stopifnot(all(c(3,4)==intersect.combo(a,b)$i))
+stopifnot(all(c(2,3)==intersect.combo(a,seq(2)+1)$i))
+stopifnot(all(c(4,5)==intersect.combo(seq(3)+3,b)$i))
 }
 

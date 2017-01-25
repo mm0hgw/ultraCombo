@@ -2,7 +2,6 @@
 
 export(createCombo)
 export(intersect.combo)
-export(is.combo.compatible)
 export(multiUnion)
 export(setdiff.combo)
 export(union.combo)

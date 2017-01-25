@@ -24,13 +24,10 @@ A list with the following elements:\cr
 Create a combination object.
 }
 \examples{
-n1<-10
-k1<-5
-n2<-choose(n1,k1)
-k2<-5
-i<-ceiling(runif(1)*choose(n2,k2))
-combo<-createCombo(combnGen::combnG(i,n2,k2),n1,k1)
-combo
-combo$Gen(seq_along(combo$indices))
+n<-20
+k<-10
+combo<-createCombo(seq(choose(n,k)),n,k)
+object.size(combo)
+object.size(combo$Gen(seq(combo$len)))
 }
 

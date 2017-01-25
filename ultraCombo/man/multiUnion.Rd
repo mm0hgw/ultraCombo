@@ -6,6 +6,9 @@
 \usage{
 multiUnion(...)
 }
+\arguments{
+\item{...}{vectors of values}
+}
 \description{
 multiUnion
 }
