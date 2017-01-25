@@ -1,9 +1,9 @@
 #' createCombo
 #'	@description Create a combination object.
 #'	@param indices A vector of combination indices.
-#'	@inheritParams is.valid.nk 
+#'	@inheritParams is.valid.nk is.valid.index 
 #'	@return A list with the following elements:\cr
-#'		$indices The indices of the combination set\cr
+#'		$i The indices of the combination set\cr
 #'		$n The n of the combination set.\cr
 #'		$k The k of the combination set.\cr
 #'		$Gen A function which generates combinations from the indices
@@ -19,18 +19,18 @@
 #'@importFrom combnGen is.valid.nk is.valid.index combnGG
 #' @export
 createCombo <- function(
-	indices,
+	i,
 	n,
 	k
 ){
 	is.valid.nk(n,k)
-	is.valid.index(indices,n,k)
+	is.valid.index(i,n,k)
 	combnGen<-combnGG(n,k)
-	out<-list(indices=indices,
-		len=length(indices),
+	out<-list(i=i,
+		len=length(i),
 		n=n,
 		k=k,
-		Gen=function(i)combnGen(indices[i])
+		Gen=function(x)combnGen(i[x])
 	)
 }
 
