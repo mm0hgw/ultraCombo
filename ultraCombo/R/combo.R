@@ -74,10 +74,11 @@ setdiff.combo <- function(a,b){
 #'b<-createCombo(seq(3)+2,4,2)
 #'a$i
 #'b$i
-#'stopifnot(all(c(3,4)==intersect.combo(a,b)$i))
-#'stopifnot(all(c(2,3)==intersect.combo(a,seq(2)+1)$i))
-#'stopifnot(all(c(4,5)==intersect.combo(seq(3)+3,b)$i))
+#'#stopifnot(all(c(3,4)==intersect.combo(a,b)$i))
+#'#stopifnot(all(c(2,3)==intersect.combo(a,seq(2)+1)$i))
+#'#stopifnot(all(c(4,5)==intersect.combo(seq(3)+3,b)$i))
 #'stopifnot(all(c(4)==intersect.combo(a,b,4)$i))
+#'#intersect.combo(a,b,4)$i
 #'@inheritParams union.combo
 #'@export
 intersect.combo <- function(...){
@@ -106,6 +107,19 @@ intersect.combo <- function(...){
 invert.combo <- function(a){
 	setdiff.combo(seq(superChoose(a$n,a$k)),
 		a
+	)
+}
+
+#'invert.combo
+#'@param a a combo object
+#'@export
+invert.combo <- function(a){
+	createCombo(
+		setdiff(seq(a$n),
+			a$i
+		),
+		a$n,
+		a$k
 	)
 }
 
@@ -195,6 +209,44 @@ print.combo<-function(x,...){
 			paste("and has a memory footprint of",object.size(x),"bytes"),
 			""
 		)
+	)
+	invisible(x)
+}
+
+#'slice.combo
+#'@param combo a combo object
+#'@param slice index of the desired subset of combo object
+#'@examples
+#'n<-4
+#'k<-2
+#'combo<-createCombo(seq(choose(n,k)),n,k)
+#'slice.combo(combo,seq(3))
+#'slice.combo(combo,seq(3)*2)
+#'try(slice.combo,0)
+#'try(slice.combo,7)
+#'@export
+slice.combo <- function(combo,slice){
+	if(any(c(slice<1,slice>combo$len)))stop("slice values out of range")
+	createCombo(combo$i[slice],combo$n,combo$k)
+}
+
+#'print.combo
+#'@param x a combo object
+#'@param ... extra arguments
+#'@examples
+#'n<-20
+#'k<-10
+#'combo<-createCombo(ceiling(runif(100)*choose(n,k)),n,k)
+#'print(combo)
+#'@importFrom utils object.size
+#'@export
+print.combo<-function(x,...){
+	print(
+		c(
+			paste(sep="","Combo object for n:",x$n," k:",x$k),
+			paste("Object contains",x$len,"indices."),
+		)
+		...
 	)
 	invisible(x)
 }

@@ -2,9 +2,7 @@
 % Please edit documentation in R/ultraCombo.R
 \docType{package}
 \name{ultraCombo-package}
-\alias{ultraCombo}
-\alias{ultraCombo-package}
-\title{ultraCombo}
+\title{ultraCombo-package}
 \description{
 Functions and data storage and manipulation 
 for combination objects.

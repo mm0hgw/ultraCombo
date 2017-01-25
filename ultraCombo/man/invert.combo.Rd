@@ -7,7 +7,7 @@
 invert.combo(a)
 }
 \arguments{
-\item{a}{a combo object}
+\item{a}{an ultraCombo object}
 }
 \description{
 invert.combo
@@ -15,7 +15,7 @@ invert.combo
 \examples{
 n<-4
 k<-2
-a<-createCombo(vector(),n,k)
+a<-ultraCombo(vector(),n,k)
 b<-invert.combo(a)
 print(b)
 print(b$i)

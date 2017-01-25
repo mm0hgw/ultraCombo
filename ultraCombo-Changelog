@@ -1,6 +1,15 @@
 	Changelog
 
+	0.1.4:
+chunk.combo()
+print -> S3Method	
+	
 	0.1.3:
+slice.combo()	 
+print.combo() 
+invert.combo()
+intersect.combo() with multiple args
+	
 slice.combo()	 
 print.combo() 
 invert.combo()
@@ -8,6 +17,11 @@ intersect.combo() with multiple args
 	
 	
 	
+	0.1.2:
+add set operations
+	
+	0.1.1:
+bugfix until is work
 	0.1.2:
 add set operations
 	

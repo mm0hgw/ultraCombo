@@ -2,7 +2,6 @@
 % Please edit documentation in R/combo.R
 \name{slice.combo}
 \alias{slice.combo}
-\title{slice.combo}
 \usage{
 slice.combo(combo, slice)
 }
@@ -10,17 +9,5 @@ slice.combo(combo, slice)
 \item{combo}{a combo object}
 
 \item{slice}{index of the desired subset of combo object}
-}
-\description{
-slice.combo
-}
-\examples{
-n<-4
-k<-2
-combo<-createCombo(seq(choose(n,k)),n,k)
-slice.combo(combo,seq(3))
-slice.combo(combo,seq(3)*2)
-try(slice.combo(combo,0))
-try(slice.combo(combo,7))
 }
 
