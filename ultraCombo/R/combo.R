@@ -11,7 +11,7 @@
 #'	n<-20
 #'	k<-10
 #'	combo<-createCombo(seq(choose(n,k)),n,k)
-#'	object.size(combo)
+#'	print(combo)
 #'	object.size(combo$Gen(seq(combo$len)))
 #'@importFrom combnGen is.valid.nk is.valid.index combnGG
 #' @export
@@ -23,11 +23,18 @@ createCombo <- function(
 	combnGen::is.valid.nk(n,k)
 	combnGen::is.valid.index(i,n,k)
 	i<-multiUnion(i)
-	if(max(i)<.Machine$integer.max){
+	if(length(i)==0 || max(i)<.Machine$integer.max){
 		i<-as.integer(i)
+		Gen=function(x){
+			if(any(c(x<1,x>length(i)))){
+				stop("index out of range")
+			}
+			combnGen(i[x])
+		}
+	class(out)<-"combo"
+	out
 	}
 	combnGen<-combnGen::combnGG(n,k)
-	out<-list(i=i,
 		len=length(i),
 		n=as.integer(n),
 		k=as.integer(k),
@@ -38,7 +45,7 @@ createCombo <- function(
 			combnGen(i[x])
 		}
 	)
-	#class(out)<-"combo"
+	class(out)<-"combo"
 	out
 }
 
@@ -70,14 +77,36 @@ setdiff.combo <- function(a,b){
 #'stopifnot(all(c(3,4)==intersect.combo(a,b)$i))
 #'stopifnot(all(c(2,3)==intersect.combo(a,seq(2)+1)$i))
 #'stopifnot(all(c(4,5)==intersect.combo(seq(3)+3,b)$i))
-#'@inheritParams setdiff.combo
+#'stopifnot(all(c(4)==intersect.combo(a,b,4)$i))
+#'@inheritParams union.combo
 #'@export
-intersect.combo <- function(a,b){
-	l<-validateInput(a,b)
-	i<-intersect(l[[1]]$i,l[[2]]$i)
-	n<-l[[1]]$n
-	k<-l[[1]]$k
-	return(createCombo(i,n,k))
+intersect.combo <- function(...){
+	l<-validateInput(...)
+	u<-union.combo(...)
+	setdiff.combo(
+		u,
+		do.call(union.combo,
+			lapply(l,setdiff.combo,a=u)
+		)
+	)
+}
+
+#'invert.combo
+#'@param a a combo object
+#'@examples
+#'n<-4
+#'k<-2
+#'a<-createCombo(vector(),n,k)
+#'b<-invert.combo(a)
+#'print(b)
+#'print(b$i)
+#'stopifnot(all(b$i==seq(6)))
+#'@importFrom superChoose superChoose
+#'@export
+invert.combo <- function(a){
+	setdiff.combo(seq(superChoose(a$n,a$k)),
+		a
+	)
 }
 
 #'union.combo
@@ -90,7 +119,7 @@ intersect.combo <- function(a,b){
 #'stopifnot(all(seq(4)==union.combo(a,seq(2)+1)$i))
 #'stopifnot(all(seq(4)+2==union.combo(b,6)$i))
 #'stopifnot(all(seq(6)==union.combo(a,b,6)$i))
-#'@param ... at least one object, and any amount of combos or vectors
+#'@param ... at least one combo object, and any amount of combos or vectors
 #'@export
 union.combo <- function(...){
 	l<-validateInput(...)
@@ -102,7 +131,7 @@ union.combo <- function(...){
 
 validateInput<-function(...){
 	l<-list(...)
-	m<-lapply(l,class)
+	m<-lapply(l,typeof)
 	lc<-l[m=="list",drop=FALSE]
 	if(length(lc)==0){
 		stop("no combo in args")
@@ -112,7 +141,7 @@ validateInput<-function(...){
 	if(sum(duplicated(n))!=length(n)-1 ||
 		sum(duplicated(k))!=length(k)-1
 	){
-		stop("input combos disagree on parameters")
+		stop("input combos disagree on n,k parameters")
 	}
 	n<-n[1] 
 	k<-k[1]
@@ -129,4 +158,43 @@ validateInput<-function(...){
 multiUnion <- function(...){
 	o<-c(...)
 	o[!duplicated(o)]
+}
+
+#'slice.combo
+#'@param combo a combo object
+#'@param slice index of the desired subset of combo object
+#'@examples
+#'n<-4
+#'k<-2
+#'combo<-createCombo(seq(choose(n,k)),n,k)
+#'slice.combo(combo,seq(3))
+#'slice.combo(combo,seq(3)*2)
+#'try(slice.combo(combo,0))
+#'try(slice.combo(combo,7))
+#'@export
+slice.combo <- function(combo,slice){
+	if(any(c(slice<1,slice>combo$len)))stop("slice values out of range")
+	createCombo(combo$i[slice],combo$n,combo$k)
+}
+
+#'print.combo
+#'@param x a combo object
+#'@param ... ignored
+#'@examples
+#'n<-20
+#'k<-10
+#'combo<-createCombo(ceiling(runif(100)*choose(n,k)),n,k)
+#'print(combo)
+#'@importFrom utils object.size
+#'@export
+print.combo<-function(x,...){
+	cat(
+		paste(sep="\n",
+			paste(sep="","Combo object for n:",x$n," k:",x$k),
+			paste("Object contains",x$len,"indices,"),
+			paste("and has a memory footprint of",object.size(x),"bytes"),
+			""
+		)
+	)
+	invisible(x)
 }

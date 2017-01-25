@@ -7,10 +7,20 @@
 union.combo(...)
 }
 \arguments{
-\item{...}{at least one object, and any amount of combos or vectors}
+\item{...}{at least one combo object, and any amount of combos or vectors}
 }
 \description{
 union.combo
+}
+\examples{
+a<-createCombo(seq(4),4,2)
+b<-createCombo(seq(3)+2,4,2)
+a$i
+b$i
+stopifnot(all(seq(5)==union.combo(a,b)$i))
+stopifnot(all(seq(4)==union.combo(a,seq(2)+1)$i))
+stopifnot(all(seq(4)+2==union.combo(b,6)$i))
+stopifnot(all(seq(6)==union.combo(a,b,6)$i))
 }
 \examples{
 a<-createCombo(seq(4),4,2)

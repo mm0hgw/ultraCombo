@@ -27,7 +27,7 @@ Create a combination object.
 n<-20
 k<-10
 combo<-createCombo(seq(choose(n,k)),n,k)
-object.size(combo)
+print(combo)
 object.size(combo$Gen(seq(combo$len)))
 }
 
