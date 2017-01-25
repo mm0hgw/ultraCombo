@@ -4,14 +4,18 @@
 \alias{createCombo}
 \title{createCombo}
 \usage{
-createCombo(indices, n, k)
+createCombo(i, n, k)
 }
 \arguments{
-\item{indices}{A vector of combination indices.}
+\item{i}{A vector of indices}
+
+\item{n}{an integer, n of combination}
+
+\item{k}{an integer, k of combination}
 }
 \value{
 A list with the following elements:\cr
-	$indices The indices of the combination set\cr
+	$i The indices of the combination set.\cr
 	$n The n of the combination set.\cr
 	$k The k of the combination set.\cr
 	$Gen A function which generates combinations from the indices
@@ -25,7 +29,7 @@ k1<-5
 n2<-choose(n1,k1)
 k2<-5
 i<-ceiling(runif(1)*choose(n2,k2))
-combo<-createCombo(combnG(i,n2,k2),n1,k1)
+combo<-createCombo(combnGen::combnG(i,n2,k2),n1,k1)
 combo
 combo$Gen(seq_along(combo$indices))
 }
