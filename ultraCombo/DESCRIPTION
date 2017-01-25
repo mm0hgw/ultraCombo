@@ -1,8 +1,8 @@
 Package: ultraCombo
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Combination data functions
+Version: 0.1
+Authors@R: person("Dale",  email = "dale@piratepress.org", role = c("aut", "cre"))
+Description: Storage and data manipulation functions for combination objects.
 Depends: R (>= 3.3.2)
-License: What license is it under?
+License: GPL-2
 LazyData: true
