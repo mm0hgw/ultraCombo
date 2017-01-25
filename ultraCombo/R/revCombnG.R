@@ -39,7 +39,7 @@
 #'stopifnot(sum(g!=.Last.value)==0)
 #'@export
 revCombnGG <- function(n){
-	debugLine("revCombnGG",n)
+	debugCat("revCombnGG",n)
 	p<-getProfile(n,n%/%2)
 	if(p$indexType=="bigz"){
 		revCombnGenElem <- revCombnGenElemGenR(p)
@@ -113,7 +113,7 @@ revCombnG<-function(x,n){
 
 revCombnGenGen<-function(FUN,n){
 	function(x){
-		debugLine("revCombnGen",n,paste(x,collapse=","))
+		debugCat("revCombnGen",n,paste(x,collapse=","))
 		switch(is.valid.combination(x,n),
 			vector(),
 			FUN(x[order(x)]),

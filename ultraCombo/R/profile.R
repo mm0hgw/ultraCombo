@@ -1,5 +1,5 @@
 getProfile<-function(n,k){
-	debugLine("getProfile:",n,k)
+#	debugCat("getProfile:",n,k)
 	is.valid.nk(n,k)
 	if(k==1||k==n){
 		return(NULL)
@@ -22,6 +22,6 @@ getProfile<-function(n,k){
 		out$invert<-FALSE
 	}
 	out$n<-n
-	debugLine("getProfile","returning ...")
+#	debugCat("getProfile","returning ...")
 	return(out)
 }

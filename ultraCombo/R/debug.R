@@ -1,13 +1,14 @@
-debugFlag<-FALSE
+debugFlag<-TRUE
 
-debugLine<-function(...){
+debugCat<-function(...){
 	if(debugFlag==TRUE){
 		cat(paste(...,"\n"))
 	}
 }
 
-debugPrint<-function(...){
+debugPrint<-function(x,...){
 	if(debugFlag==TRUE){
-		print(...)
+		print(x,...)
 	}
+	invisible(x)
 }

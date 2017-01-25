@@ -31,10 +31,10 @@
 #'	indices <- combnGen2(index)
 #'	# generate result
 #'	combnGen(indices)
-#'@useDynLib ultraCombo
+#'	@useDynLib ultraCombo
 #'	@export
 combnGG <- function(n,k){
-	debugLine("combnGG",n,k)
+	debugCat("combnGG",n,k)
 	p<-getProfile(n,k)
 	if(k==1){
 		combnGenElem<-function(index){
@@ -54,7 +54,7 @@ combnGG <- function(n,k){
 		}
 	}
 	combnGen<-function(index,.combine=rbind){
-		debugLine("combnGen",n,k)
+		debugCat("combnGen",n,k)
 		switch(is.valid.index(index,n,k),
 			vector(),
 			combnGenElem(index),

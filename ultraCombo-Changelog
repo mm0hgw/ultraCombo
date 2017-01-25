@@ -1,5 +1,8 @@
 	Changelog
 
+	0.1.6:
+
+
 	0.1.5:
 merge growCombo
 merge superChoose
@@ -15,6 +18,20 @@ print.combo()
 invert.combo()
 intersect.combo() with multiple args
 	
+	0.1.5:
+merge growCombo
+merge superChoose
+merge combnGen
+
+	0.1.4:
+chunk.combo()
+print -> S3Method	
+	
+slice.combo()	 
+print.combo() 
+invert.combo()
+intersect.combo() with multiple args
+	
 	0.1.4:
 chunk.combo()
 print -> S3Method	
@@ -31,6 +48,11 @@ intersect.combo() with multiple args
 	
 	
 	
+	0.1.2:
+add set operations
+	
+	0.1.1:
+bugfix until is work
 	0.1.2:
 add set operations
 	

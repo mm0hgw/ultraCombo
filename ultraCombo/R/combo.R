@@ -19,15 +19,14 @@ ultraCombo <- function(
 	n,
 	k
 ){
-	is.valid.nk(n,k)
-	is.valid.index(i,n,k)
+	combnGen::is.valid.nk(n,k)
+	combnGen::is.valid.index(i,n,k)
 	i<-multiUnion(i)
 	if(length(i)==0 || max(i)<.Machine$integer.max){
 		i<-as.integer(i)
 		Gen=function(x){
 			if(any(c(x<1,x>length(i)))){
 				stop("index out of range")
-			if(any(c(x<1,x>len))){
 				stop("index out of range")
 			}
 			combnGen(i[x])
@@ -64,6 +63,7 @@ ultraCombo <- function(
 #'combo[seq(3)*2]
 #'try(combo[0])
 #'try(combo[7])
+#'@param a,b one combo and one combo or vector
 #'@export
 '[.ultraCombo' <- function(x,i){
 	ultraCombo(x$i[i],x$n,x$k)
@@ -74,9 +74,13 @@ ultraCombo <- function(
 #'@param ... ignored
 #'@importFrom utils object.size
 #'@method print ultraCombo
+#'@inheritParams setdiff.combo
+#'#stopifnot(4==
+#'#intersect.combo(a,b,4)$i
+#'print(intersect.combo(seq(3)+3,b)$i)
 #'@export
 print.ultraCombo<-function(x,...){
-	cat(
+	debugCat(
 		paste(sep="\n",
 			paste(sep="","ultraCombo object n=",x$n," k=",x$k),
 			paste("contains",x$len,"indices,"),
@@ -94,14 +98,16 @@ print.ultraCombo<-function(x,...){
 #'print(b)
 #'print(b$i)
 #'stopifnot(all(b$i==seq(6)))
-#'@importFrom superChoose superChoose
 #'@export chunk.combo
 invert.combo <- function(a){
-	setdiff.combo(seq(superChoose(a$n,a$k)),
+	setdiff.combo(seq(choose(a$n,a$k)),
 		a
 	)
 }
 
+	lc<-l[m=="list",drop=FALSE]
+#'	combo
+#'@export chunk.combo
 		}
 	)
 }
@@ -137,22 +143,22 @@ print.combo<-function(x,...){
 slice.combo <- function(combo,slice){
 	if(any(c(slice<1,slice>combo$len)))stop("slice values out of range")
 	createCombo(combo$i[slice],combo$n,combo$k)
+		stop("no input")
+	}
 }
 
-#'print.combo
-#'@param x a combo object
-#'@examples
-#'n<-20
-#'k<-10
-#'combo<-createCombo(ceiling(runif(100)*choose(n,k)),n,k)
-#'print(combo)
+#'print.ultraCombo
+#'@param x An 'ultraCombo' to print
+#'@param ... ignored
 #'@importFrom utils object.size
+#'@method print ultraCombo
 #'@export
-print.combo<-function(x,...){
+print.ultraCombo<-function(x,...){
 	print(
 		c(
-			paste(sep="","Combo object for n:",x$n," k:",x$k),
+			paste(sep="","ultraCombo object n=",x$n," k=",x$k),
 			paste("Object contains",x$len,"indices."),
+			""
 		)
 		...
 	)

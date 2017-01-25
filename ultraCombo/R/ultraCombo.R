@@ -6,4 +6,3 @@
 #'	for combination objects.
 #'@useDynLib ultraCombo
 #'@import Rcpp
-"_PACKAGE"

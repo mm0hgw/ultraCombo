@@ -1,20 +1,20 @@
 # Generate an Element handler for combnGen
 combnGenElemGenR <- function(p){
-	debugLine("combnGenElemGenR",p$indexType,p$n,p$k)
+	debugCat("combnGenElemGenR",p$indexType,p$n,p$k)
 	combnGenEnv<-new.env()
 	function(index){
-		debugLine("combnGenElemR",p$indexType,p$n,p$k,index)
+		debugCat("combnGenElemR",p$indexType,p$n,p$k,index)
 		out<-rep(0,p$k)
 		if(p$invert==TRUE){
 			i<-p$ifun(p$imirror-index)
-			debugLine("combnGenElemR","inverted index:",index)
+			debugCat("combnGenElemR","inverted index:",index)
 		}else{
 			i<-p$ifun(index)
 		}
 		n<-p$n-1
 		k<-p$k-1
 		while((k>0)&&(gmp::chooseZ(n+1,k+1)>integer.precision.limit)){
-			debugLine("combnGenElemR",n,k,i,paste(out,collapse=","))
+			debugCat("combnGenElemR",n,k,i,paste(out,collapse=","))
 			if(i>gmp::chooseZ(n,k)){
 				i<-i-gmp::chooseZ(n,k)
 				n<-n-1
@@ -24,7 +24,7 @@ combnGenElemGenR <- function(p){
 				n<-n-1
 			}
 		}
-		debugLine("combnGenElemR",n,k,i,paste(out,collapse=","))
+		debugCat("combnGenElemR",n,k,i,paste(out,collapse=","))
 		if(k>0){
 			name<-paste(sep="",n+1,"g",k+1)
 			if(exists(name,envir=combnGenEnv)){
@@ -34,13 +34,13 @@ combnGenElemGenR <- function(p){
 				assign(name,combnGen,envir=combnGenEnv)			
 			}
 			subout<-combnGen(i)
-			debugLine("combnGenElemR",paste(subout,collapse=","))
+			debugCat("combnGenElemR",paste(subout,collapse=","))
 			out[seq(p$k-k,p$k)]<-subout+p$n-n-1
-			debugLine("combnGenElemR",paste(out,collapse=","))
+			debugCat("combnGenElemR",paste(out,collapse=","))
 		}else{
 			out[p$k]<-out[p$k-1]+as.integer(i)
 		}
-		debugLine("combnGenElemR",paste(out,collapse=","))
+		debugCat("combnGenElemR",paste(out,collapse=","))
 		if(p$invert==TRUE){
 			setdiff(seq(p$n),out)
 		}else{
@@ -52,13 +52,13 @@ combnGenElemGenR <- function(p){
 # generate an element handler for revCombnGen
 revCombnGenElemGenR<-function(p){
 	function(x){
-		debugLine("revCombnGenElemR",p$n,":",paste(collapse=",",x))
+		debugCat("revCombnGenElemR",p$n,":",paste(collapse=",",x))
 		k<-length(x)
 		invert<-FALSE
 		if(k>p$n%/%2){
 			invert<-TRUE
 			x<-setdiff(seq(p$n),x)
-			debugLine("revCombnGenElemR",p$n,":",paste(collapse=",",x))
+			debugCat("revCombnGenElemR",p$n,":",paste(collapse=",",x))
 			k<-length(x)
 		}
 		z<-c(0,x,p$n+1)
@@ -67,7 +67,7 @@ revCombnGenElemGenR<-function(p){
 		for(i in seq(2,y)){
 			v<-c(z[i]-z[i-1]-1,v)
 		}
-		debugLine("revCombnGenElemR","v:",paste(collapse=",",v))
+		debugCat("revCombnGenElemR","v:",paste(collapse=",",v))
 		out<-1+v[2]
 		cn<-vector()
 		ck<-vector()
@@ -84,8 +84,8 @@ revCombnGenElemGenR<-function(p){
 		if(invert==TRUE){
 			out<-1+superChoose(p$n,k)-out
 		}
-		debugLine("revCombnGenElemR","out:",out)
-		debugLine("revCombnGenElemR","test:",paste(collapse=",",combnG(out,p$n,k)))
+		debugCat("revCombnGenElemR","out:",out)
+		debugCat("revCombnGenElemR","test:",paste(collapse=",",combnG(out,p$n,k)))
 		out
 	}
 }
@@ -97,12 +97,12 @@ combnGenElemCppName<-paste(sep="",
 
 # Generate an Element handler for combnGen
 combnGenElemGenC <-function(p){
-	debugLine("combnGenElemGenC",p$indexType,p$n,p$k)
+	debugCat("combnGenElemGenC",p$indexType,p$n,p$k)
 	function(index){
-		debugLine("combnGenElemC",p$indexType,p$n,p$k,index)
+		debugCat("combnGenElemC",p$indexType,p$n,p$k,index)
 		if(p$invert==TRUE){
 			index<-p$imirror-index
-			debugLine("combnGenElemC","inversed index:",index)
+			debugCat("combnGenElemC","inversed index:",index)
 		}
 		out<-.Call(combnGenElemCppName,
 			PACKAGE="ultraCombo",
@@ -113,7 +113,7 @@ combnGenElemGenC <-function(p){
 		if(p$invert==TRUE){
 			out<-setdiff(seq(p$n),out)
 		}
-		debugLine("combnGenElemC",paste(collapse=",",out))
+		debugCat("combnGenElemC",paste(collapse=",",out))
 		out
 	}
 }
@@ -125,15 +125,15 @@ revCombnGenElemCppName<-paste(sep="",
 
 # Generate an Element handler for combnGen
 revCombnGenElemGenC <-function(p){
-	debugLine("revCombnGenElemGenC",p$indexType,p$n)
+	debugCat("revCombnGenElemGenC",p$indexType,p$n)
 	function(x){
-		debugLine("revCombnGenElemC",p$indexType,p$n,":",paste(collapse=",",x))
+		debugCat("revCombnGenElemC",p$indexType,p$n,":",paste(collapse=",",x))
 		k<-length(x)
 		invert<-FALSE
 		if(k>p$n%/%2){
 			invert<-TRUE
 			x<-setdiff(seq(p$n),x)
-			debugLine("revCombnGenElemR",p$n,":",paste(collapse=",",x))
+			debugCat("revCombnGenElemR",p$n,":",paste(collapse=",",x))
 			k<-length(x)
 		}
 		out<-.Call(revCombnGenElemCppName,
@@ -144,7 +144,7 @@ revCombnGenElemGenC <-function(p){
 		if(invert==TRUE){
 			out<-1+superChoose(p$n,k)-out
 		}
-		debugLine("revCombnGenElemC","out",out)
+		debugCat("revCombnGenElemC","out",out)
 		out
 	}
 }
