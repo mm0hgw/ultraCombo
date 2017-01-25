@@ -21,4 +21,3 @@ combo<-ultraCombo(seq(choose(n,k)),n,k)
 combo
 chunk.combo(combo,5e4)
 }
-

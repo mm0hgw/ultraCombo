@@ -7,4 +7,7 @@
 Functions and data storage and manipulation 
 for combination objects.
 }
+\author{
+\strong{Maintainer}: Dale \email{dale@piratepress.org} [copyright holder]
 
+}

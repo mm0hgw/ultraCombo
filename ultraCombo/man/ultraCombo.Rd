@@ -30,4 +30,3 @@ combo<-ultraCombo(seq(choose(n,k)),n,k)
 print(combo)
 object.size(combo$Gen(seq(combo$len)))
 }
-
