@@ -16,6 +16,7 @@
 #'	combo<-createCombo(combnG(i,n2,k2),n1,k1)
 #'	combo
 #'	combo$Gen(seq_along(combo$indices))
+#'@importFrom combnGen is.valid.nk is.valid.index combnGG
 #' @export
 createCombo <- function(
 	indices,
