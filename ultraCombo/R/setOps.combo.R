@@ -103,3 +103,17 @@ validateInput<-function(...){
 	}
 	l
 }
+
+#'invert.combo
+#'@param a a combo object
+#'@examples
+#'b<-invert.combo(a)
+#'print(b)
+#'print(b$i)
+#'stopifnot(all(b$i==seq(6)))
+#'@export chunk.combo
+invert.combo <- function(a){
+	setdiff.combo(seq(choose(a$n,a$k)),
+		a
+	)
+}

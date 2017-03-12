@@ -24,20 +24,8 @@ ultraCombo <- function(
 	i<-multiUnion(i)
 	if(length(i)==0 || max(i)<.Machine$integer.max){
 		i<-as.integer(i)
-		Gen=function(x){
-			if(any(c(x<1,x>length(i)))){
-				stop("index out of range")
-				stop("index out of range")
-			}
-			combnGen(i[x])
-		}
-			}
-			combnGen(i[x])
-		}
-	class(out)<-"combo"
-	out
-	}
 	combnGen<-combnGG(n,k)
+	out <- list(i=i,
 		len=length(i),
 		n=as.integer(n),
 		k=as.integer(k),
@@ -90,103 +78,3 @@ print.ultraCombo<-function(x,...){
 	)
 	invisible(x)
 }
-
-#'invert.combo
-#'@param a a combo object
-#'@examples
-#'b<-invert.combo(a)
-#'print(b)
-#'print(b$i)
-#'stopifnot(all(b$i==seq(6)))
-#'@export chunk.combo
-invert.combo <- function(a){
-	setdiff.combo(seq(choose(a$n,a$k)),
-		a
-	)
-}
-
-	lc<-l[m=="list",drop=FALSE]
-#'	combo
-#'@export chunk.combo
-		}
-	)
-}
-
-	lc<-l[class
-	if(length(l)==0){
-		stop("no input")
-	}
-#'@importFrom utils object.size
-#'@export
-print.combo<-function(x,...){
-	cat(
-		paste(sep="\n",
-			paste(sep="","Combo object for n:",x$n," k:",x$k),
-			paste("Object contains",x$len,"indices,"),
-			paste("and has a memory footprint of",object.size(x),"bytes"),
-			""
-		)
-	)
-	invisible(x)
-}
-
-#'slice.combo
-#'@param combo a combo object
-#'@param slice index of the desired subset of combo object
-#'@examples
-#'n<-4
-#'k<-2
-#'combo<-createCombo(seq(choose(n,k)),n,k)
-#'slice.combo(combo,seq(3))
-#'slice.combo(combo,seq(3)*2)
-#'@export
-slice.combo <- function(combo,slice){
-	if(any(c(slice<1,slice>combo$len)))stop("slice values out of range")
-	createCombo(combo$i[slice],combo$n,combo$k)
-		stop("no input")
-	}
-}
-
-#'print.ultraCombo
-#'@param x An 'ultraCombo' to print
-#'@param ... ignored
-#'@importFrom utils object.size
-#'@method print ultraCombo
-#'@export
-print.ultraCombo<-function(x,...){
-	print(
-		c(
-			paste(sep="","ultraCombo object n=",x$n," k=",x$k),
-			paste("Object contains",x$len,"indices."),
-			""
-		)
-		...
-	)
-	invisible(x)
-}
-
-#'slice.combo
-#'@param combo a combo object
-#'@param slice index of the desired subset of combo object
-#'@examples
-#'n<-4
-#'k<-2
-#'combo<-createCombo(seq(choose(n,k)),n,k)
-#'slice.combo(combo,seq(3))
-#'slice.combo(combo,seq(3)*2)
-#'try(slice.combo,0)
-#'try(slice.combo,7)
-#'@export
-slice.combo <- function(combo,slice){
-	if(any(c(slice<1,slice>combo$len)))stop("slice values out of range")
-	createCombo(combo$i[slice],combo$n,combo$k)
-}
-
-#'print.combo
-#'@param combo a combo object
-#'@param ... extra arguments
-#'@examples
-#'n<-20
-#'k<-10
-#'combo<-createCombo(ceiling(runif(100)*choose(n,k)),n,k)
-#'combo.print(combo)
