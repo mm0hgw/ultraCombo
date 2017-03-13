@@ -2,7 +2,7 @@
 #'@param combo an 'ultraCombo' to chunk
 #'@param chunkSize maximum number of indices per chunk.
 #'@importFrom bit chunk
-#'@export
+#'@export chunk.combo
 chunk.combo <- function(combo,chunkSize){
 	lapply(chunk(from=1,to=combo$len,by=chunkSize),
 		function(ch){
