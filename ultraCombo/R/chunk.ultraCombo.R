@@ -7,7 +7,7 @@ chunk.ultraCombo <- function(combo,chunkSize){
 	lapply(chunk(from=1,to=combo$len,by=chunkSize),
 		function(ch){
 			ultraCombo(combo$i[seq(ch[1],ch[2])],
-				combo$n
+				combo$n,
 				combo$k
 			)
 		}
