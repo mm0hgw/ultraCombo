@@ -51,7 +51,6 @@ ultraCombo <- function(
 #'combo[seq(3)*2]
 #'try(combo[0])
 #'try(combo[7])
-#'@param a,b one combo and one combo or vector
 #'@export
 '[.ultraCombo' <- function(x,i){
 	ultraCombo(x$i[i],x$n,x$k)

@@ -56,7 +56,6 @@ invert.combo <- function(a){
 	)
 }
 
-
 #'union.combo
 #'@examples
 #'a<-ultraCombo(seq(4),4,2)
@@ -102,19 +101,4 @@ validateInput<-function(...){
 		l[!m]<-lapply(lv,ultraCombo,n,k)
 	}
 	l
-}
-
-#'invert.combo
-#'@param a a combo object
-#'@examples
-#'a <- ultraCombo(vector(),4,2)
-#'b <- invert.combo(a)
-#'print(b)
-#'print(b$i)
-#'stopifnot(all(b$i==seq(6)))
-#'@export
-invert.combo <- function(a){
-	setdiff.combo(seq(choose(a$n,a$k)),
-		a
-	)
 }
