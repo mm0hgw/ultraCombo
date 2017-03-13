@@ -67,7 +67,7 @@ ultraCombo <- function(
 #'print(intersect.combo(seq(3)+3,b)$i)
 #'@export
 print.ultraCombo<-function(x,...){
-	print(
+	cat(
 		paste(sep="\n",
 			paste(sep="","ultraCombo object n=",x$n," k=",x$k),
 			paste("contains",x$len,"indices,"),
