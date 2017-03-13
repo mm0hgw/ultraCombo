@@ -19,8 +19,8 @@ ultraCombo <- function(
 	n,
 	k
 ){
-	combnGen::is.valid.nk(n,k)
-	combnGen::is.valid.index(i,n,k)
+	is.valid.nk(n,k)
+	is.valid.index(i,n,k)
 	i<-multiUnion(i)
 	if(length(i)==0 || max(i)<.Machine$integer.max)
 		i<-as.integer(i)
