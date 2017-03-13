@@ -22,7 +22,7 @@ ultraCombo <- function(
 	combnGen::is.valid.nk(n,k)
 	combnGen::is.valid.index(i,n,k)
 	i<-multiUnion(i)
-	if(length(i)==0 || max(i)<.Machine$integer.max){
+	if(length(i)==0 || max(i)<.Machine$integer.max)
 		i<-as.integer(i)
 	combnGen<-combnGG(n,k)
 	out <- list(i=i,
@@ -68,7 +68,7 @@ ultraCombo <- function(
 #'print(intersect.combo(seq(3)+3,b)$i)
 #'@export
 print.ultraCombo<-function(x,...){
-	debugCat(
+	print(
 		paste(sep="\n",
 			paste(sep="","ultraCombo object n=",x$n," k=",x$k),
 			paste("contains",x$len,"indices,"),
