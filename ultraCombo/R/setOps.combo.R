@@ -107,7 +107,8 @@ validateInput<-function(...){
 #'invert.combo
 #'@param a a combo object
 #'@examples
-#'b<-invert.combo(a)
+#'a <- ultraCombo(vector(),4,2)
+#'b <- invert.combo(a)
 #'print(b)
 #'print(b$i)
 #'stopifnot(all(b$i==seq(6)))
