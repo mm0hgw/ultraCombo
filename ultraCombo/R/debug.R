@@ -1,4 +1,4 @@
-debugFlag<-TRUE
+debugFlag<-FALSE
 
 debugCat<-function(...){
 	if(debugFlag==TRUE){
