@@ -1,4 +1,3 @@
-
 #' ultraCombo-package
 #' @aliases NULL
 #' @description
@@ -6,3 +5,4 @@
 #'	for combination objects.
 #'@useDynLib ultraCombo
 #'@import Rcpp
+'_PACKAGE'

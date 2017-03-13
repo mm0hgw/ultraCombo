@@ -111,7 +111,7 @@ validateInput<-function(...){
 #'print(b)
 #'print(b$i)
 #'stopifnot(all(b$i==seq(6)))
-#'@export chunk.combo
+#'@export
 invert.combo <- function(a){
 	setdiff.combo(seq(choose(a$n,a$k)),
 		a
