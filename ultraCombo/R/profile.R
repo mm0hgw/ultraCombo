@@ -4,7 +4,7 @@ getProfile<-function(n,k){
 	if(k==1||k==n){
 		return(NULL)
 	}
-	if(choose(n,k)<integer.precision.limit){
+	if(superChoose(n,k)<integer.precision.limit){
 		out<-list(indexType=class(integer.precision.limit))
 	}else{
 		if(requireNamespace("gmp")){
