@@ -1,7 +1,7 @@
 	Changelog
 
 	0.1.6:
-
+generation moved to 'ballot' package
 
 	0.1.5:
 merge growCombo
