@@ -1,3 +1,9 @@
+#'dataCombo
+#'@description A method to wrap a data object with an ultraCombo.
+#'@param combo an 'ultraCombo'
+#'@param dataObj a data object
+#'@param ... extra args for '['
+#'@export
 dataCombo <- function(
 	combo,
 	dataObj,
