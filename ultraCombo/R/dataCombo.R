@@ -20,7 +20,6 @@ dataCombo <- function(
 		FUN(dataObj[combo$Gen(i),...])
 	}
 	out$dataObj <- dataObj
-	)
 	class(out) <- c('dataCombo', class(out))
 	out
 }
