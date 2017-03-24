@@ -14,14 +14,13 @@ dataCombo <- function(
 	stopifnot(is.ultraCombo(combo))
 	stopifnot(is.function(FUN))
 	
-	out <- list(Gen=function(i){
-			stopifnot(length(i)==1)
-			FUN(dataObj[combo$Gen(i),...])
-		},
-		len=combo$len,
-		combo=combo,
-		dataObj=dataObj
+	out <- combo
+	out$dGen <-function(i){
+		stopifnot(length(i)==1)
+		FUN(dataObj[combo$Gen(i),...])
+	}
+	out$dataObj <- dataObj
 	)
-	class(out) <- 'dataCombo'
+	class(out) <- c('dataCombo', class(out))
 	out
 }
