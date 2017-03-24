@@ -12,7 +12,7 @@ dataCombo <- function(
 	...
 ){
 	stopifnot(is.ultraCombo(combo))
-	stopifnot(is.function(FUN))
+	stopifnot(is.function(FUN)||is.primitive(FUN))
 	
 	out <- combo
 	out$dGen <-function(i){
