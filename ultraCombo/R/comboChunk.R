@@ -1,0 +1,25 @@
+#'comboChunk
+#'@description Chunk combos. See bit::chunk
+#'@param combo an 'ultraCombo' to chunk
+#'@param ... arguments for bit::chunk
+#'@importFrom bit chunk
+comboChunk <- function(combo,...){
+	UseMethod('comboChunk',combo)
+}
+
+#'comboChunk.ultraCombo
+#'@param combo an 'ultraCombo' to chunk
+#'@param ... arguments for bit::chunk
+#'@importFrom bit chunk
+#'@export
+comboChunk.ultraCombo <- function(combo,...){
+	lapply(chunk(from=1,to=combo$len,...),
+		function(ch){
+			ultraCombo(combo$i[seq(ch[1],ch[2])],
+				combo$n,
+				combo$k
+			)
+		}
+	)
+}
+
