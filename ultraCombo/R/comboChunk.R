@@ -15,10 +15,8 @@ comboChunk <- function(combo,...){
 comboChunk.ultraCombo <- function(combo,...){
 	lapply(chunk(from=1,to=combo$len,...),
 		function(ch){
-			ultraCombo(combo$i[seq(ch[1],ch[2])],
-				combo$n,
-				combo$k
-			)
+			combo$i <- combo$i[seq(ch[1],ch[2])]
+			return(combo)
 		}
 	)
 }
