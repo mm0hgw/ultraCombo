@@ -14,15 +14,15 @@ dataCombo <- function(
 	stopifnot(is.function(FUN)||is.primitive(FUN))
 	
 	out <- combo
-	if(dim(dataObj)==2){
+	if(is.null(dim(dataObj))){
 		out$dGen <-function(i){
 			stopifnot(length(i)==1)
-			FUN(dataObj[combo$Gen(i),TRUE])
+			FUN(dataObj[combo$Gen(i)])
 		}
 	}else{
 		out$dGen <-function(i){
 			stopifnot(length(i)==1)
-			FUN(dataObj[combo$Gen(i)])
+			FUN(dataObj[combo$Gen(i),TRUE])
 		}
 	}
 	out$dataObj <- dataObj
