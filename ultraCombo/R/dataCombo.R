@@ -8,16 +8,22 @@
 dataCombo <- function(
 	combo,
 	dataObj,
-	FUN=invisible,
-	...
+	FUN=invisible
 ){
 	stopifnot(is.ultraCombo(combo))
 	stopifnot(is.function(FUN)||is.primitive(FUN))
 	
 	out <- combo
-	out$dGen <-function(i){
-		stopifnot(length(i)==1)
-		FUN(dataObj[combo$Gen(i),...])
+	if(dim(dataObj)==2){
+		out$dGen <-function(i){
+			stopifnot(length(i)==1)
+			FUN(dataObj[combo$Gen(i),TRUE])
+		}
+	}else{
+		out$dGen <-function(i){
+			stopifnot(length(i)==1)
+			FUN(dataObj[combo$Gen(i)])
+		}
 	}
 	out$dataObj <- dataObj
 	class(out) <- c('dataCombo', class(out))
