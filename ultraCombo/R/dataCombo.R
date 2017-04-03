@@ -29,3 +29,8 @@ dataCombo <- function(
 	class(out) <- c('dataCombo', class(out))
 	out
 }
+
+#'@method [ dataCombo
+[.dataCombo <- function(x,i){
+	stop('not implemented')
+}
