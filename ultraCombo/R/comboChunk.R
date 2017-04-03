@@ -18,6 +18,7 @@ comboChunk.ultraCombo <- function(combo,...){
 	lapply(chunk(from=1,to=combo$len,...),
 		function(ch){
 			combo$i <- combo$i[seq(ch[1],ch[2])]
+			combo$len <- length(combo$i)
 			return(combo)
 		}
 	)
