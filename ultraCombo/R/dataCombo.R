@@ -17,12 +17,12 @@ dataCombo <- function(
 	if(is.null(dim(dataObj))){
 		out$dGen <-function(i){
 			stopifnot(length(i)==1)
-			return(FUN(dataObj[combo$Gen(i)]))
+			FUN(dataObj[combo$Gen(i)])
 		}
 	}else{
 		out$dGen <-function(i){
 			stopifnot(length(i)==1)
-			return(FUN(dataObj[combo$Gen(i),TRUE]))
+			FUN(dataObj[combo$Gen(i),TRUE])
 		}
 	}
 	out$dataObj <- dataObj
