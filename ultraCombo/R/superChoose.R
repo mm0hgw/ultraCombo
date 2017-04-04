@@ -39,10 +39,9 @@ superChoose<-function(n,k){
 			out
 		}
 	}else{
-		if(any((integer.precision.limit>(out<-hashChoose(n,k))))){
-			w<-"Computation out of integer precision range. Install 'gmp' to extend precision range."
-			if(!(w%in%names(warnings())))
-				warning(w)
+		out<-hashChoose(n,k)
+		if(any((integer.precision.limit>out))){
+			stop("Computation out of integer precision range. Install 'gmp' to extend precision range.")
 		}
 		return(out)
 	}
