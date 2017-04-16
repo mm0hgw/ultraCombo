@@ -90,11 +90,19 @@ is.valid.index <- function(i,n,k){
 	error_list<-vector()
 	errors<-i[i%%1!=0]
 	if(length(errors)>0){
-		error_list<-c(error_list,paste("non integer i input:",paste(errors,collapse=":")))
+		error_list<-c(error_list,
+			paste("non integer i input:",
+				paste(errors,collapse=":")
+			)
+		)
 	}
 	errors<-c(i[(i<1)],i[(i>superChoose(n,k))])
 	if(length(errors)>0){
-		error_list<-c(error_list,paste("i values out of range:",paste(errors,collapse=":")))
+		error_list<-c(error_list,
+			paste("i values out of range:",
+				paste(errors,collapse=":")
+			)
+		)
 	}
 	if(length(error_list)>0){
 		stop(paste(error_list,collapse=":"))
