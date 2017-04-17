@@ -1,5 +1,6 @@
 # ultraCombo
-Storage and data manipulation functions for combination objects.
+Conversion, storage and data manipulation functions for 
+combination objects.
 
 devtools::install_github("mm0hgw/ultraCombo",subdir="ultraCombo")
 
