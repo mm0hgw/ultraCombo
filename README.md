@@ -7,7 +7,7 @@ devtools::install_github("mm0hgw/ultraCombo",subdir="ultraCombo")
 
 ------OUTPUT
 
-$ showCombo(5,3)
+$ showCombo(5,3)\br
 showCombo n: 5 k: 3
 $ combn( 5 , 3 )
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
