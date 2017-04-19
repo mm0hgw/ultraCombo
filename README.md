@@ -7,35 +7,64 @@ devtools::install_github("mm0hgw/ultraCombo",subdir="ultraCombo")
 
 ------OUTPUT
 
-$ showCombo(5,3)\br
+$ showCombo(5,3)
+
 showCombo n: 5 k: 3
+
 $ combn( 5 , 3 )
+
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+
 [1,]    1    1    1    1    1    1    2    2    2     3
+
 [2,]    2    2    2    3    3    4    3    3    4     4
+
 [3,]    3    4    5    4    5    5    4    5    5     5
+
 $ choose( 4 , 2 )
+
 [1] 6
+
 $ rep(1,choose( 4 , 2 ))
+
 [1] 1 1 1 1 1 1
+
 $ combn( 4 , 2 )+1
+
      [,1] [,2] [,3] [,4] [,5] [,6]
+
 [1,]    2    2    2    3    3    4
+
 [2,]    3    4    5    4    5    5
+
 $ rbind(rep(1,choose( 4 , 2 )),combn( 4 , 2 )+1)
+
      [,1] [,2] [,3] [,4] [,5] [,6]
+
 [1,]    1    1    1    1    1    1
+
 [2,]    2    2    2    3    3    4
+
 [3,]    3    4    5    4    5    5
+
 $ combn( 4 , 3 )+1
+
      [,1] [,2] [,3] [,4]
+
 [1,]    2    2    2    3
+
 [2,]    3    3    4    4
+
 [3,]    4    5    5    5
+
 $ cbind(rbind(rep(1,choose( 4 , 2 )),combn( 4 , 2 )+1),combn( 4 , 3 )+1)
+
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+
 [1,]    1    1    1    1    1    1    2    2    2     3
+
 [2,]    2    2    2    3    3    4    3    3    4     4
+
 [3,]    3    4    5    4    5    5    4    5    5     5
 
 -------RAMBLINGS
@@ -86,20 +115,20 @@ of duplicate combinations.
 --------CODE
 
 showCombo <- function(n,k){
-	cat(paste('showCombo n:',n,'k:',k,'\n'))
-	cat('$ combn(',n,',',k,')\n')
+	cat(paste('showCombo n:',n,'k:',k,'\n\n'))
+	cat('$ combn(',n,',',k,')\n\n')
 	print(combn(n,k))
-	cat('$ choose(',n-1,',',k-1,')\n')
+	cat('$ choose(',n-1,',',k-1,')\n\n')
 	print(choose(n-1,k-1))
-	cat('$ rep(1,choose(',n-1,',',k-1,'))\n')
+	cat('$ rep(1,choose(',n-1,',',k-1,'))\n\n')
 	print(rep(1,choose(n-1,k-1)))
-	cat('$ combn(',n-1,',',k-1,')+1\n')
+	cat('$ combn(',n-1,',',k-1,')+1\n\n')
 	print(combn(n-1,k-1)+1)
-	cat('$ rbind(rep(1,choose(',n-1,',',k-1,')),combn(',n-1,',',k-1,')+1)\n')
+	cat('$ rbind(rep(1,choose(',n-1,',',k-1,')),combn(',n-1,',',k-1,')+1)\n\n')
 	print(rbind(rep(1,choose(n-1,k-1)),combn(n-1,k-1)+1))
-	cat('$ combn(',n-1,',',k,')+1\n')
+	cat('$ combn(',n-1,',',k,')+1\n\n')
 	print(combn(n-1,k)+1)
-	cat('$ cbind(rbind(rep(1,choose(',n-1,',',k-1,')),combn(',n-1,',',k-1,')+1),combn(',n-1,',',k,')+1)\n')
+	cat('$ cbind(rbind(rep(1,choose(',n-1,',',k-1,')),combn(',n-1,',',k-1,')+1),combn(',n-1,',',k,')+1)\n\n')
 	print(cbind(rbind(rep(1,choose(n-1,k-1)),combn(n-1,k-1)+1),combn(n-1,k)+1))
 	
 }
