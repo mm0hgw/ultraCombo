@@ -62,7 +62,7 @@ revCombnGG <- function(n){
 #'	n<-15
 #'	out<-vector()
 #'	while(length(out)<n){
-#'		out<-sort(out,sample(setdiff(seq(n),out),1))
+#'		out<-sort(c(out,sample(setdiff(seq(n),out),1)))
 #'		k<-length(out)
 #'		cat(revCombnG(out,n),n,k,":",paste(out,collapse=","),"\n")
 #'	}
