@@ -21,7 +21,7 @@ double nCkd( int n, int k )
 }
 
 // [[Rcpp::export]]
-IntegerVector combnGenElem_numeric(
+IntegerVector combnGenElem(
 	NumericVector xv,
 	IntegerVector nv,
 	IntegerVector kv
@@ -50,7 +50,7 @@ IntegerVector combnGenElem_numeric(
 }
 
 // [[Rcpp::export]]
-NumericVector revCombnGenElem_numeric(
+NumericVector revCombnGenElem(
 	IntegerVector xv,
 	IntegerVector nv
 ){

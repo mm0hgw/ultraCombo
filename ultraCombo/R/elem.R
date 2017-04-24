@@ -90,10 +90,7 @@ revCombnGenElemGenR<-function(p){
 	}
 }
 
-combnGenElemCppName<-paste(sep="",
-	"ultraCombo_combnGenElem_",
-	class(integer.precision.limit)
-)
+combnGenElemCppName <- "ultraCombo_combnGenElem"
 
 # Generate an Element handler for combnGen
 combnGenElemGenC <-function(p){
@@ -118,10 +115,7 @@ combnGenElemGenC <-function(p){
 	}
 }
 
-revCombnGenElemCppName<-paste(sep="",
-	"ultraCombo_revCombnGenElem_",
-	class(integer.precision.limit)
-)
+revCombnGenElemCppName <- "ultraCombo_revCombnGenElem"
 
 # Generate an Element handler for combnGen
 revCombnGenElemGenC <-function(p){
