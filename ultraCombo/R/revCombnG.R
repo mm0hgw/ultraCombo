@@ -60,14 +60,9 @@ revCombnGG <- function(n){
 #'	@return a 'vector' of the requested indices.
 #'	@examples
 #'	n<-15
-#'	growSet<-function(out,n){
-#'		l<-setdiff(seq(n),out)
-#'		out<-c(l[ceiling(runif(1)*length(l))],out)
-#'		out[order(out)]
-#'	}
 #'	out<-vector()
 #'	while(length(out)<n){
-#'		out<-growSet(out,n)
+#'		out<-sort(out,sample(setdiff(out,n),1))
 #'		k<-length(out)
 #'		cat(revCombnG(out,n),n,k,":",paste(out,collapse=","),"\n")
 #'	}
