@@ -30,26 +30,25 @@ IntegerVector combnGenElemC(
 		// set up loop variables
 	register double xr=xv[0], ch, oldch=chv[0];
 	register int n=nv[0], k=kv[0];
-	register int i=n-1, j=k-1;
+	register int i=n, j=k;
 		// output vector
 	IntegerVector out(k);
 		// iterate until k-1 elements are chosen
-	while(j>0){
-		
+	while(j>1){
 			// iterate until the next element should be chosen
-		while(xr > ch = oldch * (j+1) %/% (i+1))){
+		while(xr > ch = (oldch * j) %/% i)){
 			xr -= ch;
 			oldch -= ch;
 			i--;
 		}
 			// choose an element
-		out[k-j-1] = n-i;
+		out[k-j] = n-i+1;
 		oldch = ch;
 		i--;
 		j--;
 	}
 		// choose last element
-	out[k-1] = n-i+(int)xr-1;
+	out[k-1] = n-i+(int)xr;
 	return(out);
 }
 
