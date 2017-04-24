@@ -60,12 +60,6 @@ revCombnGG <- function(n){
 #'	@return a 'vector' of the requested indices.
 #'	@examples
 #'	n<-15
-#'	out<-vector()
-#'	while(length(out)<n){
-#'		out<-sort(c(out,sample(setdiff(seq(n),out),1)))
-#'		k<-length(out)
-#'		cat(revCombnG(out,n),n,k,":",paste(out,collapse=","),"\n")
-#'	}
 #'	l<-revCombnG(rbind(
 #' c(2,7),
 #'	 c(3,5),
