@@ -105,10 +105,10 @@ revCombnGenGen<-function(FUN,n){
 		debugCat("revCombnGen",n,paste(x,collapse=","))
 		switch(is.valid.combination(x,n),
 			vector(),
-			FUN(x[order(x)]),
+			FUN(x[order(x)],n),
 			do.call(c,
 				lapply(seq(nrow(x)),
-					function(y)FUN(x[y,order(x[y,])])
+					function(y)FUN(x[y,order(x[y,])],n)
 				)
 			)
 		)
