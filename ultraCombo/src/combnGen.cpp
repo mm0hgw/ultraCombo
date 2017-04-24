@@ -24,23 +24,27 @@ double nCkd( int n, int k )
 IntegerVector combnGenElemC(
 	NumericVector xv,
 	IntegerVector nv,
-	IntegerVector kv
+	IntegerVector kv,
+	NumericVector chv
 ){
 		// set up loop variables
-	register double xr=xv[0], ch;
+	register double xr=xv[0], ch, oldch=chv[0];
 	register int n=nv[0], k=kv[0];
 	register int i=n-1, j=k-1;
 		// output vector
 	IntegerVector out(k);
 		// iterate until k-1 elements are chosen
 	while(j>0){
+		
 			// iterate until the next element should be chosen
-		while(xr>(ch=nCkd(i,j))){
-			xr-=ch;
+		while(xr > ch = oldch * (j+1) %/% (i+1))){
+			xr -= ch;
+			oldch -= ch;
 			i--;
 		}
 			// choose an element
 		out[k-j-1] = n-i;
+		oldch = ch;
 		i--;
 		j--;
 	}

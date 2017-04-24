@@ -101,7 +101,7 @@ combnGenElemGenC <-function(p){
 			index<-p$imirror-index
 			debugCat("combnGenElemC","inversed index:",index)
 		}
-		out<-combnGenElemC(index,p$n,p$k)
+		out<-combnGenElemC(index,p$n,p$k,p$ch)
 		if(p$invert==TRUE){
 			out<-setdiff(seq(p$n),out)
 		}

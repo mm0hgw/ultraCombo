@@ -4,11 +4,12 @@ getProfile<-function(n,k){
 	if(k==1||k==n){
 		return(NULL)
 	}
-	if(superChoose(n,k)<integer.precision.limit){
-		out<-list(indexType='numeric')
+	out<-list()
+	if((out$ch <- superChoose(n,k))<integer.precision.limit){
+		out$indexType <- 'numeric'
 	}else{
 		if(requireNamespace("gmp")){
-			out<-list(indexType="bigz")
+			out$indexType <- "bigz")
 		}else{
 			stop(paste("Combination too big. Install 'gmp' package to extend range.","n:",n,"k:",k,"choose(n,k):",choose(n,k),"limit:",integer.precision.limit,sep=" "))
 		}
