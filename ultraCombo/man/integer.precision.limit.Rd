@@ -9,7 +9,7 @@
 integer.precision.limit
 }
 \description{
-A constant. The maximum value the base system can handle
+A constant. The maximum double value the base system can handle
 with integer precision.\cr 
 \code{
 max(.Machine$integer.max,	
