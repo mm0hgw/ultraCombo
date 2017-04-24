@@ -5,7 +5,7 @@ getProfile<-function(n,k){
 		return(NULL)
 	}
 	if(superChoose(n,k)<integer.precision.limit){
-		out<-list(indexType=class(integer.precision.limit))
+		out<-list(indexType='numeric')
 	}else{
 		if(requireNamespace("gmp")){
 			out<-list(indexType="bigz")
