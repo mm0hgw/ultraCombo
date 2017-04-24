@@ -5,53 +5,28 @@
 
 using namespace Rcpp;
 
-// combnGenElem_numeric
-IntegerVector combnGenElem_numeric(NumericVector xv, IntegerVector nv, IntegerVector kv);
-RcppExport SEXP ultraCombo_combnGenElem_numeric(SEXP xvSEXP, SEXP nvSEXP, SEXP kvSEXP) {
+// combnGenElem
+IntegerVector combnGenElem(NumericVector xv, IntegerVector nv, IntegerVector kv);
+RcppExport SEXP ultraCombo_combnGenElem(SEXP xvSEXP, SEXP nvSEXP, SEXP kvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type xv(xvSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type nv(nvSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type kv(kvSEXP);
-    rcpp_result_gen = Rcpp::wrap(combnGenElem_numeric(xv, nv, kv));
+    rcpp_result_gen = Rcpp::wrap(combnGenElem(xv, nv, kv));
     return rcpp_result_gen;
 END_RCPP
 }
-// combnGenElem_integer
-IntegerVector combnGenElem_integer(IntegerVector xv, IntegerVector nv, IntegerVector kv);
-RcppExport SEXP ultraCombo_combnGenElem_integer(SEXP xvSEXP, SEXP nvSEXP, SEXP kvSEXP) {
+// revCombnGenElem
+NumericVector revCombnGenElem(IntegerVector xv, IntegerVector nv);
+RcppExport SEXP ultraCombo_revCombnGenElem(SEXP xvSEXP, SEXP nvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< IntegerVector >::type xv(xvSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type kv(kvSEXP);
-    rcpp_result_gen = Rcpp::wrap(combnGenElem_integer(xv, nv, kv));
-    return rcpp_result_gen;
-END_RCPP
-}
-// revCombnGenElem_integer
-IntegerVector revCombnGenElem_integer(IntegerVector xv, IntegerVector nv);
-RcppExport SEXP ultraCombo_revCombnGenElem_integer(SEXP xvSEXP, SEXP nvSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< IntegerVector >::type xv(xvSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type nv(nvSEXP);
-    rcpp_result_gen = Rcpp::wrap(revCombnGenElem_integer(xv, nv));
-    return rcpp_result_gen;
-END_RCPP
-}
-// revCombnGenElem_numeric
-NumericVector revCombnGenElem_numeric(IntegerVector xv, IntegerVector nv);
-RcppExport SEXP ultraCombo_revCombnGenElem_numeric(SEXP xvSEXP, SEXP nvSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< IntegerVector >::type xv(xvSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type nv(nvSEXP);
-    rcpp_result_gen = Rcpp::wrap(revCombnGenElem_numeric(xv, nv));
+    rcpp_result_gen = Rcpp::wrap(revCombnGenElem(xv, nv));
     return rcpp_result_gen;
 END_RCPP
 }
