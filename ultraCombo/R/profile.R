@@ -9,7 +9,7 @@ getProfile<-function(n,k){
 		out$indexType <- 'numeric'
 	}else{
 		if(requireNamespace("gmp")){
-			out$indexType <- "bigz")
+			out$indexType <- "bigz"
 		}else{
 			stop(paste("Combination too big. Install 'gmp' package to extend range.","n:",n,"k:",k,"choose(n,k):",choose(n,k),"limit:",integer.precision.limit,sep=" "))
 		}
