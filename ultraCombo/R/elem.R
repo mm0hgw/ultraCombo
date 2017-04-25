@@ -90,8 +90,6 @@ revCombnGenElemGenR<-function(p){
 	}
 }
 
-combnGenElemCppName <- "ultraCombo_combnGenElem"
-
 # Generate an Element handler for combnGen
 combnGenElemGenC <-function(p){
 	debugCat("combnGenElemGenC",p$indexType,p$n,p$k)
@@ -109,8 +107,6 @@ combnGenElemGenC <-function(p){
 		out
 	}
 }
-
-revCombnGenElemCppName <- "ultraCombo_revCombnGenElem"
 
 # Generate an Element handler for combnGen
 revCombnGenElemGenC <-function(p){
