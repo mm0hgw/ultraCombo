@@ -36,7 +36,7 @@ IntegerVector combnGenElemC(
 		// iterate until k-1 elements are chosen
 	while(j>1){
 			// iterate until the next element should be chosen
-		while(xr > ch = (oldch * j) %/% i)){
+		while(xr > (ch = (oldch * j) / i)){
 			xr -= ch;
 			oldch -= ch;
 			i--;
