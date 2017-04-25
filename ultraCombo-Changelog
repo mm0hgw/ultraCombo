@@ -2,6 +2,7 @@
 
 	0.1.7:
 add dataCombo class
+optimised C code
 
 	0.1.6:
 generation moved to 'ballot' package
