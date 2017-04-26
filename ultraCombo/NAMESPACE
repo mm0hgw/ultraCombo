@@ -3,7 +3,6 @@
 S3method("[",ultraCombo)
 S3method(comboChunk,ultraCombo)
 S3method(print,ultraCombo)
-export(chunk.combo)
 export(combnG)
 export(combnGG)
 export(comboChunk)
