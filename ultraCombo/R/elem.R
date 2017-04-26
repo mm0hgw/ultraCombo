@@ -99,7 +99,7 @@ combnGenElemGenC <-function(p){
 			index<-p$imirror-index
 			debugCat("combnGenElemC","inversed index:",index)
 		}
-		out<-combnGenElemC(index,p$n,p$k,p$ch)
+		out<-combnGenElemRcpp(index,p$n,p$k,p$ch)
 		if(p$invert==TRUE){
 			out<-setdiff(seq(p$n),out)
 		}
@@ -121,7 +121,7 @@ revCombnGenElemGenC <-function(p){
 			debugCat("revCombnGenElemR",p$n,":",paste(collapse=",",x))
 			k<-length(x)
 		}
-		out<-revCombnGenElemC(x,p$n)
+		out<-revCombnGenElemRcpp(x,p$n)
 		if(invert==TRUE){
 			out<-1+superChoose(p$n,k)-out
 		}
