@@ -4,8 +4,8 @@
 #'@param ... arguments for bit::chunk
 #'@importFrom bit chunk
 #'@export
-comboChunk <- function(combo,...){
-	UseMethod('comboChunk',combo)
+comboChunk <- function(combo, ...) {
+    UseMethod("comboChunk", combo)
 }
 
 #'comboChunk.ultraCombo
@@ -14,13 +14,11 @@ comboChunk <- function(combo,...){
 #'@importFrom bit chunk
 #'@method comboChunk ultraCombo
 #'@export
-comboChunk.ultraCombo <- function(combo,...){
-	lapply(chunk(from=1,to=combo$len,...),
-		function(ch){
-			combo$i <- combo$i[seq(ch[1],ch[2])]
-			combo$len <- length(combo$i)
-			return(combo)
-		}
-	)
+comboChunk.ultraCombo <- function(combo, ...) {
+    lapply(chunk(from = 1, to = combo$len, ...), function(ch) {
+        combo$i <- combo$i[seq(ch[1], ch[2])]
+        combo$len <- length(combo$i)
+        return(combo)
+    })
 }
 
