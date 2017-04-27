@@ -3,29 +3,29 @@
 #' Choose values calculated with integer accuracy.
 #'@inheritParams gmp::chooseZ
 #'@examples
-#'\t# regular base::choose() output
+#'# regular base::choose() output
 #'outer(seq(11),seq(11),FUN=superChoose)
 #'n<-1
-#'\t# step up to below system limit
+#'# step up to below system limit
 #'while(hashChoose(n+1,(n+1)%/%2)<integer.precision.limit){
-#'\tn<-n+1
+#'n<-n+1
 #'}
 #'k<-n%/%2
-#'\t# this is accurate
+#'# this is accurate
 #'hashChoose(n,k)
 #'hashChoose(n,k-1)
-#'\t# the above should exactly sum to the below
+#'# the above should exactly sum to the below
 #'hashChoose(n+1,k)
 #'class(superChoose(n,k))
-#'\t# throws an error without 'gmp' installed
+#'# throws an error without 'gmp' installed
 #'try(superChoose(n+1,k)-hashChoose(n+1,k))
 #'if(require(gmp)){
-#'\tprint(out<-superChoose(n+1,k))
-#'\tprint(class(out))
-#'\tprint(paste('n',n,'k',k))
-#'\tprint(outer(seq(5)-3+n,seq(3)-2+k,FUN=superChoose))
-#'\tprint(outer(seq(11)-6+n,seq(11)-6+k,FUN=superChoose) -
-#'\t\touter(seq(11)-6+n,seq(11)-6+k,FUN=hashChoose))
+#'print(out<-superChoose(n+1,k))
+#'print(class(out))
+#'print(paste('n',n,'k',k))
+#'print(outer(seq(5)-3+n,seq(3)-2+k,FUN=superChoose))
+#'print(outer(seq(11)-6+n,seq(11)-6+k,FUN=superChoose) -
+#'outer(seq(11)-6+n,seq(11)-6+k,FUN=hashChoose))
 #'}
 #'@importFrom methods as
 #'@export
@@ -64,7 +64,7 @@ chooseEnv <- new.env()
 
 #'hashChoose
 #'@description
-#'\tUsed for better integer accuracy over non 
+#'Used for better integer accuracy over non 
 #' negative integer input than base::choose(n,k)
 #'@inheritParams gmp::chooseZ
 #'@export

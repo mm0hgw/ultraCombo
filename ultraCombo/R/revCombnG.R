@@ -1,33 +1,33 @@
-#'\t@title Reverse Combination Generator Generator
-#'\t@name revCombnGG
-#'\t@author Dale Potter, \email{dale@@piratepress.org}
-#'\t@description Creates a function with a precomputed 
-#'\tlook-up table which returns a
-#'\treference integer vector when fed with a matrix
-#'\tof combinations in rows.
-#'\t
-#'\t@param n integer < .Machine$integer.max, size of the set from which combination is generated
-#'\t@return a 'function (x)' that takes
-#'\tcombination matrices and returns reference integers.
-#'\t
-#'\t@examples
-#'\tn<-10
-#'\trevCombnGen<-revCombnGG(n)
-#'\ti<-cbind(seq(4),5,6,7,8,9,10)
-#'\tj<-revCombnGen(i)
-#'\tj
-#'\tcombnG(j,n,ncol(i))
+#'@title Reverse Combination Generator Generator
+#'@name revCombnGG
+#'@author Dale Potter, \email{dale@@piratepress.org}
+#'@description Creates a function with a precomputed 
+#'look-up table which returns a
+#'reference integer vector when fed with a matrix
+#'of combinations in rows.
+#'
+#'@param n integer < .Machine$integer.max, size of the set from which combination is generated
+#'@return a 'function (x)' that takes
+#'combination matrices and returns reference integers.
+#'
+#'@examples
+#'n<-10
+#'revCombnGen<-revCombnGG(n)
+#'i<-cbind(seq(4),5,6,7,8,9,10)
+#'j<-revCombnGen(i)
+#'j
+#'combnG(j,n,ncol(i))
 #'
 #'#define game
 #'n<-25
 #'game<-function(n){
-#'\tk<-ceiling(runif(1,0,n))
-#'\tout<-vector()
-#'\tfor(i in seq(k)){
-#'\t\tl<-setdiff(seq(n),out)
-#'\t\tout<-c(l[ceiling(runif(1)*length(l))],out)
-#'\t}
-#'\tout[order(out)]
+#'k<-ceiling(runif(1,0,n))
+#'out<-vector()
+#'for(i in seq(k)){
+#'l<-setdiff(seq(n),out)
+#'out<-c(l[ceiling(runif(1)*length(l))],out)
+#'}
+#'out[order(out)]
 #'}
 #'revCombnGen<-revCombnGG(n)
 #'g<-game(n)
@@ -50,28 +50,28 @@ revCombnGG <- function(n) {
     return(revCombnGen)
 }
 
-#'\t@title Reverse Combination Generator
-#'\t@name revCombnG
-#'\t@author Dale Potter, \email{dale@@piratepress.org}
-#'\t@description Returns the reference integer vector of a combination matrix\cr
-#'\tk is identified from length(x) or length(x[1,]) as appropriate.
-#'\t@param x integer, a single combination as a 'vector' or several (with the same k) as rows in a 'matrix'
-#'\t@param n integer, length(1), <= .Machine$integer.max, size of the set from which combination is generated
-#'\t@return a 'vector' of the requested indices.
-#'\t@examples
-#'\tn<-15
-#'\tl<-revCombnG(rbind(
+#'@title Reverse Combination Generator
+#'@name revCombnG
+#'@author Dale Potter, \email{dale@@piratepress.org}
+#'@description Returns the reference integer vector of a combination matrix\cr
+#'k is identified from length(x) or length(x[1,]) as appropriate.
+#'@param x integer, a single combination as a 'vector' or several (with the same k) as rows in a 'matrix'
+#'@param n integer, length(1), <= .Machine$integer.max, size of the set from which combination is generated
+#'@return a 'vector' of the requested indices.
+#'@examples
+#'n<-15
+#'l<-revCombnG(rbind(
 #' c(2,7),
-#'\t c(3,5),
-#'\t c(3,9),
-#'\t c(10,1),
-#'\t c(6,3),
-#' \tc(5,2)
+#' c(3,5),
+#' c(3,9),
+#' c(10,1),
+#' c(6,3),
+#' c(5,2)
 #' ),n)
-#'\tprint(l)
-#'\tk<-2
-#'\tcombnG(l,n,k)
-#'\t@export
+#'print(l)
+#'k<-2
+#'combnG(l,n,k)
+#'@export
 revCombnG <- function(x, n) {
     if (length(dim(x)) == 0) {
         k <- length(x)

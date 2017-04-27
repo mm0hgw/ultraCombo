@@ -1,18 +1,18 @@
 #' ultraCombo
-#'\t@description Create a combination object.
-#'\t@inheritParams is.valid.nk 
-#'\t@inheritParams is.valid.index 
-#'\t@return A list with the following elements:\cr
-#'\t\t$i The indices of the combination set.\cr
-#'\t\t$n The n of the combination set.\cr
-#'\t\t$k The k of the combination set.\cr
-#'\t\t$Gen A function which generates combinations from the indices
-#'\t@examples
-#'\tn<-20
-#'\tk<-10
-#'\tcombo<-ultraCombo(seq(choose(n,k)),n,k)
-#'\tprint(combo)
-#'\tobject.size(combo$Gen(seq(combo$len)))
+#'@description Create a combination object.
+#'@inheritParams is.valid.nk 
+#'@inheritParams is.valid.index 
+#'@return A list with the following elements:\cr
+#'$i The indices of the combination set.\cr
+#'$n The n of the combination set.\cr
+#'$k The k of the combination set.\cr
+#'$Gen A function which generates combinations from the indices
+#'@examples
+#'n<-20
+#'k<-10
+#'combo<-ultraCombo(seq(choose(n,k)),n,k)
+#'print(combo)
+#'object.size(combo$Gen(seq(combo$len)))
 #' @export
 ultraCombo <- function(i, n, k) {
     is.valid.nk(n, k)

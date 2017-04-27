@@ -1,10 +1,10 @@
 #' integer.precision.limit
-#'\t@description A constant. The maximum double value the base system can handle
-#'\twith integer precision.\cr 
+#'@description A constant. The maximum double value the base system can handle
+#'with integer precision.\cr 
 #'\code{
-#'\tmax(.Machine$integer.max,\t
-#'\t\t2^.Machine$double.digits-1
-#'\t)
+#'max(.Machine$integer.max,
+#'2^.Machine$double.digits-1
+#')
 #'/}
-#'\t@export
+#'@export
 integer.precision.limit <- 2^(.Machine$double.digits) - 1
