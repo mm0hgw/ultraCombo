@@ -4,10 +4,10 @@ Version: 0.1.7
 Authors@R: person("Dale",  email = "dale@piratepress.org", role = c("aut", "cre", "cph"))
 Description: Storage and data manipulation functions for combination objects.
 Depends:
-    R (>= 3.3.2)
+    R (>= 3.3.2), Rcpp
 License: GPL-2
 LazyData: true
-Imports: Rcpp, bit, methods
+Imports: bit, methods, utils
 RoxygenNote: 6.0.1
 LinkingTo: Rcpp
 Suggests: gmp
