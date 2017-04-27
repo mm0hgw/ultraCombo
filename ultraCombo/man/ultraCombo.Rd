@@ -15,10 +15,10 @@ ultraCombo(i, n, k)
 }
 \value{
 A list with the following elements:\cr
-	$i The indices of the combination set.\cr
-	$n The n of the combination set.\cr
-	$k The k of the combination set.\cr
-	$Gen A function which generates combinations from the indices
+$i The indices of the combination set.\cr
+$n The n of the combination set.\cr
+$k The k of the combination set.\cr
+$Gen A function which generates combinations from the indices
 }
 \description{
 Create a combination object.

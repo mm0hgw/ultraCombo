@@ -34,7 +34,7 @@ stopifnot(0==sum(combnG(choose(n,k),n,k)!=seq(to=n,length.out=k)))
 combnG(ceiling(runif(10)*choose(n,k)),n,k)
 
 if(ultraCombo:::debugFlag==FALSE){
-	stopifnot(sum(combn(n,k)!=combnG(seq(choose(n,k)),n,k,cbind))==0) 
+stopifnot(sum(combn(n,k)!=combnG(seq(choose(n,k)),n,k,cbind))==0) 
 }
 
 }

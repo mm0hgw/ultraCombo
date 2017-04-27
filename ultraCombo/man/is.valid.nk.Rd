@@ -17,24 +17,24 @@ Only combination definitions capable of yielding at least one combination
 are considered valid in this test.
 }
 \examples{
-	# length(n)==1
+# length(n)==1
 try(is.valid.nk(c(0,0),0))
-	# length(k)==1
+# length(k)==1
 try(is.valid.nk(0,c(0,0)))
-	# n\%\%1==0
+# n\%\%1==0
 try(is.valid.nk(0.5,0))
-	# k\%\%1==0
+# k\%\%1==0
 try(is.valid.nk(0,0.5))
-	# k<=n<.Machine$integer.max
+# k<=n<.Machine$integer.max
 try(is.valid.nk(c(0,.Machine$integer.max+1),1))
-	# 0<k<n
+# 0<k<n
 try(is.valid.nk(0,c(-1,1)))
-	# all
+# all
 try(is.valid.nk(c(-1.5,.Machine$integer.max+1),c(-0.5,.Machine$integer.max+1e3)))
 
-	# low limit of validity
+# low limit of validity
 is.valid.nk(0,0)
 is.valid.nk(1,0)
-	# high limit of validity
+# high limit of validity
 is.valid.nk(.Machine$integer.max,.Machine$integer.max)
 }

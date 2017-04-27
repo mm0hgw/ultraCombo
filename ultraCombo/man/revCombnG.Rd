@@ -22,11 +22,11 @@ k is identified from length(x) or length(x[1,]) as appropriate.
 n<-15
 l<-revCombnG(rbind(
 c(2,7),
- c(3,5),
- c(3,9),
- c(10,1),
- c(6,3),
-	c(5,2)
+c(3,5),
+c(3,9),
+c(10,1),
+c(6,3),
+c(5,2)
 ),n)
 print(l)
 k<-2

@@ -33,8 +33,8 @@ game<-function(n){
 k<-ceiling(runif(1,0,n))
 out<-vector()
 for(i in seq(k)){
-	l<-setdiff(seq(n),out)
-	out<-c(l[ceiling(runif(1)*length(l))],out)
+l<-setdiff(seq(n),out)
+out<-c(l[ceiling(runif(1)*length(l))],out)
 }
 out[order(out)]
 }

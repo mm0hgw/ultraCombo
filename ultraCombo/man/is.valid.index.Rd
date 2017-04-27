@@ -19,16 +19,16 @@ is.valid.index
 \examples{
 n<-20
 k<-10
-	# non-integer input
+# non-integer input
 try(is.valid.index(0.5,n,k))
-	# out of range input
+# out of range input
 try(is.valid.index(0,n,k))
 try(is.valid.index(choose(n,k)+1,n,k))
-	# valid tests
-	# no argument
+# valid tests
+# no argument
 is.valid.index(vector(),n,k)
-	# single valid argument
+# single valid argument
 is.valid.index(1,n,k)
-	# multiple valid aguments
+# multiple valid aguments
 is.valid.index(c(1,choose(n,k)),n,k)
 }

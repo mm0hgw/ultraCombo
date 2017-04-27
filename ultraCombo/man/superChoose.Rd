@@ -36,9 +36,9 @@ try(superChoose(n+1,k)-hashChoose(n+1,k))
 if(require(gmp)){
 print(out<-superChoose(n+1,k))
 print(class(out))
-print(paste("n",n,"k",k))
+print(paste('n',n,'k',k))
 print(outer(seq(5)-3+n,seq(3)-2+k,FUN=superChoose))
 print(outer(seq(11)-6+n,seq(11)-6+k,FUN=superChoose) -
-	outer(seq(11)-6+n,seq(11)-6+k,FUN=hashChoose))
+outer(seq(11)-6+n,seq(11)-6+k,FUN=hashChoose))
 }
 }

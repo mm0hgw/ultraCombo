@@ -12,8 +12,8 @@ integer.precision.limit
 A constant. The maximum double value the base system can handle
 with integer precision.\cr 
 \code{
-max(.Machine$integer.max,	
-	2^.Machine$double.digits-1
+max(.Machine$integer.max,
+2^.Machine$double.digits-1
 )
 /}
 }
