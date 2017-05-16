@@ -1,0 +1,81 @@
+
+
+# recursive new version
+
+combnG_recursive <- function(i,n,k){
+	if ( k == 0) return(vector())
+	if ( k == 1) return(i)
+	ch <- choose(n-1,k-1)
+	if (i <= ch){
+		return(
+			c(1,
+				1+combnG_recursive(
+					i,
+					n-1,
+					k-1
+				)
+			)
+		)
+	}else{
+		return(
+			1+combnG_recursive(
+				i-ch,
+				n-1,
+				k
+			)
+		)
+	}
+}
+
+
+# original version
+
+lutEnv <- new.env()
+
+tagNK <- function(n,k){
+	paste(sep='C',n,k)
+}
+
+add_combo <- function(n,k){
+	tag <- tagNK(n,k)
+	assign(tag,combn(n,k),envir=lutEnv)
+}
+
+rm_combo <- function(n,k){
+	tag <- tagNK(n,k)
+	rm(tag,envir=lutEnv)
+}
+
+exists_combo <- function(n,k){
+	tag <- tagNK(n,k)
+	exists(tag,envir=lutEnv)
+}
+
+index_combo <- function(i,n,k){
+	if(!exists_combo(n,k)){
+		add_combo(n,k)
+	}
+	tag <- tagNK(n,k)
+	lut <- matrix(get(tag,envir=lutEnv),nrow=k)
+	lut[,i]
+}
+
+compare_test <- function(n,k){
+	sample_size <- min(1e5,choose(n,k))
+	offset <- choose(n,k)-sample_size
+		
+	microbenchmark::microbenchmark(
+		do.call(c,
+			lapply(seq(sample_size)+offset,
+				combnG_recursive,n,k
+			)
+		),
+		as.vector(ultraCombo::combnG(seq(sample_size)+offset,n,k,cbind))
+	)
+			
+	
+}
+
+compare_test(20,10)
+compare_test(32,7)
+compare_test(115,7)
