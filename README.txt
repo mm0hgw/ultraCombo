@@ -10,6 +10,7 @@ devtools::install_github("mm0hgw/ultraCombo",subdir="ultraCombo")
 > showCombo(5,3)
 showCombo n: 5 k: 3
 > combn( 5 , 3 )
+###			Index number of all possible combinations
      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 [1,]    1    1    1    1    1    1    2    2    2     3
 [2,]    2    2    2    3    3    4    3    3    4     4
