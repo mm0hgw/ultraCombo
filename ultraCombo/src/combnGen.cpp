@@ -67,7 +67,7 @@ NumericVector revCombnGenElemRcpp(
         for(q=0;q<ql;q++){
             ch = (oldch * j) / i;
             xr += ch;
-			oldch -= ch;
+            oldch -= ch;
             i--;
         }
         ch = (oldch * j) / i;

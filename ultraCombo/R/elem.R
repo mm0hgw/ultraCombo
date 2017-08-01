@@ -109,7 +109,7 @@ combnGenElemGenC <- function(p) {
     }
 }
 
-# Generate an Element handler for combnGen
+# Generate an Element handler for revCombnGen
 revCombnGenElemGenC <- function(p) {
     debugCat("revCombnGenElemGenC", p$indexType, p$n)
     function(x) {
@@ -123,7 +123,7 @@ revCombnGenElemGenC <- function(p) {
             debugCat("revCombnGenElemR", p$n, ":", paste(collapse = ",", x))
             k <- length(x)
         }
-        out <- revCombnGenElemRcpp(x, p$n)
+        out <- revCombnGenElemRcpp(x, p$n, p$ch)
         if (invert == TRUE) {
             out <- 1 + superChoose(p$n, k) - out
         }
