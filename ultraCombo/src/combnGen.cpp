@@ -29,7 +29,7 @@ IntegerVector combnGenElemRcpp(
 ){
 		// set up loop variables
 	register double xr=xv[0], ch, oldch=chv[0];
-	register int n=nv[0], k=kv[0];
+	int n=nv[0], k=kv[0];
 	register int i=n, j=k;
 		// output vector
 	IntegerVector out(k);
@@ -55,24 +55,26 @@ IntegerVector combnGenElemRcpp(
 // [[Rcpp::export]]
 NumericVector revCombnGenElemRcpp(
 	IntegerVector xv,
-	IntegerVector nv
+	IntegerVector nv,
+	NumericVector chv
 ){
-	register int n=nv[0], k=xv.size(), i, j, offset;
-	register int v[k+1];
+	int n=nv[0], k=xv.size(), pl=k-1;
+    register int i=n, j=k, p, q, ch, oldch=chv[0], ql, xr=1;
 	NumericVector out(1);
-	
-	v[k]=xv[0]-1;
-	for(i=1;i<k;i++){
-		v[k-i]=xv[i]-xv[i-1]-1;
-	}
-	v[0]=n-xv[k-1];
-	out[0]=1+v[1];
-	offset=v[0];
-	for(j=1;j<k;j++){
-		offset+=v[j];
-		for(i=1;i<=v[j+1];i++){
-			out[0]+=nCkd(offset+i+j,j);
-		}
-	}
-	return out;
+    
+	for(p=0;p<pl;p++){
+		ql=xv[p+1]-xv[p]-1;
+        for(q=0;q<ql;q++){
+            ch = (oldch * j) / i;
+            xr += ch;
+			oldch -= ch;
+            i--;
+        }
+        ch = (oldch * j) / i;
+        oldch = ch;
+        i--;
+        j--;
+    }
+    out[0] = xr;
+ 	return out;
 }

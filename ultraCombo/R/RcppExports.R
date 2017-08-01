@@ -5,7 +5,7 @@ combnGenElemRcpp <- function(xv, nv, kv, chv) {
     .Call('ultraCombo_combnGenElemRcpp', PACKAGE = 'ultraCombo', xv, nv, kv, chv)
 }
 
-revCombnGenElemRcpp <- function(xv, nv) {
-    .Call('ultraCombo_revCombnGenElemRcpp', PACKAGE = 'ultraCombo', xv, nv)
+revCombnGenElemRcpp <- function(xv, nv, chv) {
+    .Call('ultraCombo_revCombnGenElemRcpp', PACKAGE = 'ultraCombo', xv, nv, chv)
 }
 

@@ -20,14 +20,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // revCombnGenElemRcpp
-NumericVector revCombnGenElemRcpp(IntegerVector xv, IntegerVector nv);
-RcppExport SEXP ultraCombo_revCombnGenElemRcpp(SEXP xvSEXP, SEXP nvSEXP) {
+NumericVector revCombnGenElemRcpp(IntegerVector xv, IntegerVector nv, NumericVector chv);
+RcppExport SEXP ultraCombo_revCombnGenElemRcpp(SEXP xvSEXP, SEXP nvSEXP, SEXP chvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< IntegerVector >::type xv(xvSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type nv(nvSEXP);
-    rcpp_result_gen = Rcpp::wrap(revCombnGenElemRcpp(xv, nv));
+    Rcpp::traits::input_parameter< NumericVector >::type chv(chvSEXP);
+    rcpp_result_gen = Rcpp::wrap(revCombnGenElemRcpp(xv, nv, chv));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"ultraCombo_combnGenElemRcpp", (DL_FUNC) &ultraCombo_combnGenElemRcpp, 4},
+    {"ultraCombo_revCombnGenElemRcpp", (DL_FUNC) &ultraCombo_revCombnGenElemRcpp, 3},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_ultraCombo(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
