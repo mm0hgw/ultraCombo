@@ -1,0 +1,28 @@
+revCombnG_recursive <- function(x,n){
+	k <- length(x)
+	ch <- choose(n-1,k-1)
+	out <- 1
+	i <- 1
+	j <- 1
+	while(k-i>0){
+		if(x[i]-j+1 == 1){
+			ch <- ch*(k-i)/(n-j)
+			i <- i + 1
+			j <- j + 1
+		}else{
+			out <- out + ch
+			ch <- ch - ch*(k-i)/(n-j)
+			j <- j + 1
+		}
+	}
+	out
+}
+
+revCombnG_recursive(seq(3),10)
+
+revCombnG_recursive(seq(3)+7,10)
+
+combnG(revCombnG_recursive(seq(3),10),10,3)
+
+combnG(revCombnG_recursive(seq(3)+7,10),10,3)
+

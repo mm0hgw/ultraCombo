@@ -58,23 +58,22 @@ NumericVector revCombnGenElemRcpp(
 	IntegerVector nv,
 	NumericVector chv
 ){
-	int n=nv[0], k=xv.size(), pl=k-1;
-    register int i=n, j=k, p, q, ch, oldch=chv[0], ql, xr=1;
+	int n=nv[0], k=xv.size();
+  register int i=1, j=1, xr=1;
+  register int ch=chv[0]*(k-1)/(n-1);
 	NumericVector out(1);
     
-	for(p=0;p<pl;p++){
-		ql=xv[p+1]-xv[p]-1;
-        for(q=0;q<ql;q++){
-            ch = (oldch * j) / i;
-            xr += ch;
-            oldch -= ch;
-            i--;
-        }
-        ch = (oldch * j) / i;
-        oldch = ch;
-        i--;
-        j--;
-    }
-    out[0] = xr;
+	while(k-i>0){
+		if(x[i-1]-j+1==1){
+			ch = ch*(k-i)/(n-j);
+			i++;
+			j++;
+		}else{
+			xr += ch;
+			ch = ch - ch*(k-i)/(n-j);
+			j++;
+		}
+	}
+  out[0] = xr;
  	return out;
 }
