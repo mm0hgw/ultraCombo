@@ -18,12 +18,15 @@ revCombnG_recursive <- function(x,n){
 	out
 }
 
-revCombnG_recursive(seq(3),10)
-revCombnG_recursive(seq(3)+7,10)
-revCombnG_recursive(seq(3)*3,10)
-revCombnG_recursive(seq(3)*3+1,10)
+buildPackage::buildPackage('ultraCombo',check=1)
 
-combnG(revCombnG_recursive(seq(3),10),10,3)
-combnG(revCombnG_recursive(seq(3)+7,10),10,3)
-combnG(revCombnG_recursive(seq(3)*3,10),10,3)
-combnG(revCombnG_recursive(seq(3)*3+1,10),10,3)
+x <- 1
+n <- 100
+k <- 3
+ch <- choose(n,k)
+
+while(x <= ch){
+	y<-print(revCombnG(print(combnG(x,n,k)),n))
+	stopifnot(x==y)
+	x <- x + 1
+}
