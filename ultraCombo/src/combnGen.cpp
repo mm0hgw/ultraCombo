@@ -65,11 +65,11 @@ NumericVector revCombnGenElemRcpp(
 
 	while(k-i>0){
 		if(xv[i-1]-j==0){
-			ch = ch*(k-i+1)/(n-j);
+			ch = ch*(k-i+1)/(n-j+1);
 			i++;
 			j++;
 		}else{
-			ch = ch - ch * (k-i+1)/(n-j);
+			ch = ch - ch * (k-i+1)/(n-j+1);
 			xr += ch;
 			j++;
 		}
