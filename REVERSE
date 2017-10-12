@@ -1,7 +1,7 @@
 revCombnG_recursive <- function(x,n){
 	k <- length(x)
 	ch <- choose(n-1,k-1)
-	out <- 1
+	out <- x[k] - x[k-1]
 	i <- 1
 	j <- 1
 	while(k-i>0){
@@ -19,10 +19,11 @@ revCombnG_recursive <- function(x,n){
 }
 
 revCombnG_recursive(seq(3),10)
-
 revCombnG_recursive(seq(3)+7,10)
+revCombnG_recursive(seq(3)*3,10)
+revCombnG_recursive(seq(3)*3+1,10)
 
 combnG(revCombnG_recursive(seq(3),10),10,3)
-
 combnG(revCombnG_recursive(seq(3)+7,10),10,3)
-
+combnG(revCombnG_recursive(seq(3)*3,10),10,3)
+combnG(revCombnG_recursive(seq(3)*3+1,10),10,3)
