@@ -64,7 +64,7 @@ NumericVector revCombnGenElemRcpp(
 	NumericVector out(1);
 
 	while(k-i>0){
-		if(x[i-1]-j+1==1){
+		if(xv[i-1]-j+1==1){
 			ch = ch*(k-i)/(n-j);
 			i++;
 			j++;
