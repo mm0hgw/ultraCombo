@@ -1,55 +1,3 @@
-#'@title Reverse Combination Generator Generator
-#'@name revCombnGG
-#'@author Dale Potter, \email{dale@@piratepress.org}
-#'@description Creates a function with a precomputed 
-#'look-up table which returns a
-#'reference integer vector when fed with a matrix
-#'of combinations in rows.
-#'
-#'@param n integer < .Machine$integer.max, size of the set from which combination is generated
-#'@return a 'function (x)' that takes
-#'combination matrices and returns reference integers.
-#'
-#'@examples
-#'n<-10
-#'revCombnGen<-revCombnGG(n)
-#'i<-cbind(seq(4),5,6,7,8,9,10)
-#'j<-revCombnGen(i)
-#'j
-#'combnG(j,n,ncol(i))
-#'
-#'#define game
-#'n<-25
-#'game<-function(n){
-#'k<-ceiling(runif(1,0,n))
-#'out<-vector()
-#'for(i in seq(k)){
-#'l<-setdiff(seq(n),out)
-#'out<-c(l[ceiling(runif(1)*length(l))],out)
-#'}
-#'out[order(out)]
-#'}
-#'revCombnGen<-revCombnGG(n)
-#'g<-game(n)
-#'g
-#'i<-revCombnGen(g)
-#'k<-length(g)
-#'print(i)
-#'combnG(i,n,k)
-#'stopifnot(sum(g!=.Last.value)==0)
-#'@export
-revCombnGG <- function(n) {
-    debugCat("revCombnGG", n)
-    p <- getProfile(n, n%/%2)
-    if (p$indexType == "bigz") {
-        revCombnGenElem <- revCombnGenElemGenR(p)
-    } else {
-        revCombnGenElem <- revCombnGenElemGenC(p)
-    }
-    revCombnGen <- revCombnGenGen(revCombnGenElem, n)
-    return(revCombnGen)
-}
-
 #'@title Reverse Combination Generator
 #'@name revCombnG
 #'@author Dale Potter, \email{dale@@piratepress.org}
@@ -102,7 +50,7 @@ revCombnG <- function(x, n) {
 
 revCombnGenGen <- function(FUN, n) {
     function(x) {
-        debugCat("revCombnGen", n, paste(x, collapse = ","))
+        debugCat("revCombnGenGen", n, paste(x, collapse = ","))
         switch(is.valid.combination(x, n), vector(), FUN(sort(x)), sapply(seq(nrow(x)), 
             function(y) FUN(sort(x[y, ]))))
     }
