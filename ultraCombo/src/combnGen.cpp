@@ -60,17 +60,17 @@ NumericVector revCombnGenElemRcpp(
 ){
 	int n=nv[0], k=xv.size();
   register int i=1, j=1, xr=xv[k-1]-xv[k-2];
-  register int ch=chv[0];
+  register int ch=chv[0]*k/n;
 	NumericVector out(1);
 
 	while(k-i>0){
 		if(xv[i-1]-j==0){
-			ch = ch*(k-i+1)/(n-j+1);
+			ch = ch * (k-i) / (n-j);
 			i++;
 			j++;
 		}else{
-			ch = ch - ch * (k-i+1)/(n-j+1);
 			xr += ch;
+			ch = ch - ch * (k-i) / (n-j);
 			j++;
 		}
 	}
