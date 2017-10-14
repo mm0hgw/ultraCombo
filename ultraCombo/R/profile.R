@@ -16,6 +16,7 @@ getProfile <- function(n, k) {
                 sep = " "))
         }
     }
+    out$ifun <- function(i)as(i,out$indexType)
     if (k > n%/%2) {
         out$k <- n - k
         out$invert <- TRUE
