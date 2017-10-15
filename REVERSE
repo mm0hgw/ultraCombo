@@ -1,6 +1,6 @@
-revCombnG_recursive <- function(x,n){
+revCombnG_unrolled <- function(x,n){
 	k <- length(x)
-	ch <- choose(n-1,k-1)
+	ch <- superChoose(n-1,k-1)
 	out <- x[k] - x[k-1]
 	i <- 1
 	j <- 1
