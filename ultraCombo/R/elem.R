@@ -39,7 +39,6 @@ revCombnGenElemGenC <- function(p) {
     }
 }
 
-#'@importFrom gmp as.bigq
 combnGenElemR <- function(x,n,k,ch){
 	i <- n
 	j <- k
@@ -83,7 +82,6 @@ combnGenElemGenR <- function(p) {
     }
 }
 
-#'@importFrom gmp as.bigq as.bigz
 revCombnGenElemR <- function(x,n,ch){
 	k <- length(x)
 	ch <- ch * k / n
