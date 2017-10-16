@@ -40,30 +40,30 @@ revCombnGenElemGenC <- function(p) {
 }
 
 #'@importFrom gmp as.bigq
-combnGenElemR <- function(x,n,k,ch){
-	i <- n
-	j <- k
-	out <- vector('integer',k)
-	if(class(ch)=='bigz'){
-		ch <- gmp::as.bigq(ch)
-		gmp <- TRUE
-	}else{
-		gmp <- FALSE
-	}
-	oldch <- ch
-	while(j>1){
-		while(x > (ch <- oldch * j / i)){
-			x <- x - ch
-			oldch <- oldch - ch
-			i <- i - 1
-		}
-		out[k-j+1] = n-i+1
-		oldch <- ch
-		i <- i - 1
-		j <- j - 1
-	}
-	out[k] <- as.integer(n-i+x)
-	out
+combnGenElemR <- function(x, n, k, ch) {
+    i <- n
+    j <- k
+    out <- vector("integer", k)
+    if (class(ch) == "bigz") {
+        ch <- gmp::as.bigq(ch)
+        gmp <- TRUE
+    } else {
+        gmp <- FALSE
+    }
+    oldch <- ch
+    while (j > 1) {
+        while (x > (ch <- oldch * j/i)) {
+            x <- x - ch
+            oldch <- oldch - ch
+            i <- i - 1
+        }
+        out[k - j + 1] = n - i + 1
+        oldch <- ch
+        i <- i - 1
+        j <- j - 1
+    }
+    out[k] <- as.integer(n - i + x)
+    out
 }
 
 combnGenElemGenR <- function(p) {
@@ -84,34 +84,34 @@ combnGenElemGenR <- function(p) {
 }
 
 #'@importFrom gmp as.bigq as.bigz
-revCombnGenElemR <- function(x,n,ch){
-	k <- length(x)
-	ch <- ch * k / n
-	if(class(ch)=='bigz'){
-		ch <- gmp::as.bigq(ch)
-		gmp <- TRUE
-	}else{
-		gmp <- FALSE
-	}
-	out <- x[k] - x[k-1]
-	i <- 1
-	j <- 1
-	while(k-i>0){
-		if(x[i]-j == 0){
-			ch <- ch * (k-i) / (n-j)
-			i <- i + 1
-			j <- j + 1
-		}else{
-			out <- out + ch
-			ch <- ch - ch * (k-i) / (n-j)
-			j <- j + 1
-		}
-	}
-	if(gmp == TRUE){
-		gmp::as.bigz(out)
-	}else{
-		out
-	}
+revCombnGenElemR <- function(x, n, ch) {
+    k <- length(x)
+    ch <- ch * k/n
+    if (class(ch) == "bigz") {
+        ch <- gmp::as.bigq(ch)
+        gmp <- TRUE
+    } else {
+        gmp <- FALSE
+    }
+    out <- x[k] - x[k - 1]
+    i <- 1
+    j <- 1
+    while (k - i > 0) {
+        if (x[i] - j == 0) {
+            ch <- ch * (k - i)/(n - j)
+            i <- i + 1
+            j <- j + 1
+        } else {
+            out <- out + ch
+            ch <- ch - ch * (k - i)/(n - j)
+            j <- j + 1
+        }
+    }
+    if (gmp == TRUE) {
+        gmp::as.bigz(out)
+    } else {
+        out
+    }
 }
 
 revCombnGenElemGenR <- function(p) {
