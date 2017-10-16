@@ -46,6 +46,7 @@ combnGenElemR <- function(x, n, k, ch) {
     out <- vector("integer", k)
     if (class(ch) == "bigz") {
         ch <- gmp::as.bigq(ch)
+        x <- gmp::as.bigq(x)
         gmp <- TRUE
     } else {
         gmp <- FALSE
