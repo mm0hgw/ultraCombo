@@ -1,7 +1,7 @@
 combnG_unrolled <- function(x,n,k){
 	i <- n
 	j <- k
-	oldch <- superChoose(n,k)
+	ch <- superChoose(n,k)
 	out <- vector('integer',k)
 	if(class(ch)=='bigz'){
 		ch <- gmp::as.bigq(ch)
@@ -9,6 +9,7 @@ combnG_unrolled <- function(x,n,k){
 	}else{
 		gmp <- FALSE
 	}
+	oldch <- ch
 	while(j>1){
 		while(x > (ch <- oldch * j / i)){
 			x <- x - ch
