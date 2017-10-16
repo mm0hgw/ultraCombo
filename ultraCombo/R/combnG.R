@@ -31,11 +31,9 @@
 #'indices <- combnGen2(index)
 #'# generate result
 #'combnGen(indices)
-#'@useDynLib ultraCombo
 #'@export
 combnGG <- function(n, k) {
     debugCat("combnGG", n, k)
-    p <- getProfile(n, k)
     if (k == 1) {
         combnGenElem <- function(index) {
             return(index)
@@ -46,12 +44,9 @@ combnGG <- function(n, k) {
             return(seq(n))
         }
     }
-    if (k != 1 && k != n) {
-        if (p$indexType != "bigz") {
-            combnGenElem <- combnGenElemGenC(p)
-        } else {
-            combnGenElem <- combnGenElemGenR(p)
-        }
+    if (!exists("revCombnGenElem")) {
+        p <- getProfile(n, k)
+        combnGenElem <- combnGenElemGenR(p)
     }
     combnGen <- function(index, .combine = rbind) {
         debugCat("combnGen", n, k)

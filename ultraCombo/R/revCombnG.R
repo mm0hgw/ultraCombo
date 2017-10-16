@@ -38,11 +38,7 @@ revCombnG <- function(x, n) {
     }
     if (!exists("revCombnGenElem")) {
         p <- getProfile(n, k)
-        if (p$indexType == "bigz") {
-            revCombnGenElem <- revCombnGenElemGenR(p)
-        } else {
-            revCombnGenElem <- revCombnGenElemGenC(p)
-        }
+        revCombnGenElem <- revCombnGenElemGenR(p)
     }
     revCombnGen <- revCombnGenGen(revCombnGenElem, n)
     revCombnGen(x)

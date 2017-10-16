@@ -2,7 +2,8 @@ getProfile <- function(n, k) {
     # debugCat('getProfile:',n,k)
     is.valid.nk(n, k)
     if (k == 1 || k == n) {
-        return(NULL)
+        return(list(n = n, k = k, invert = FALSE, imirror = superChoose(n, k) + 1, 
+            indexType = "numeric"))
     }
     out <- list()
     if ((out$ch <- superChoose(n, k)) < integer.precision.limit) {
@@ -24,6 +25,7 @@ getProfile <- function(n, k) {
     } else {
         out$k <- k
         out$invert <- FALSE
+        out$imirror <- superChoose(n, k) + 1
     }
     out$n <- n
     # debugCat('getProfile','returning ...')

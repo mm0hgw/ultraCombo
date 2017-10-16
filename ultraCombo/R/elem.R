@@ -1,44 +1,3 @@
-# Generate an Element handler for combnGen
-combnGenElemGenC <- function(p) {
-    debugCat("combnGenElemGenC", p$indexType, p$n, p$k)
-    function(index) {
-        debugCat("combnGenElemC", p$indexType, p$n, p$k, index)
-        if (p$invert == TRUE) {
-            index <- p$imirror - index
-            debugCat("combnGenElemC", "inversed index:", index)
-        }
-        out <- combnGenElemRcpp(index, p$n, p$k, p$ch)
-        if (p$invert == TRUE) {
-            out <- setdiff(seq(p$n), out)
-        }
-        debugCat("combnGenElemC", paste(collapse = ",", out))
-        out
-    }
-}
-
-# Generate an Element handler for revCombnGen
-revCombnGenElemGenC <- function(p) {
-    debugCat("revCombnGenElemGenC", p$indexType, p$n)
-    function(x) {
-        debugCat("revCombnGenElemC", p$indexType, p$n, ":", paste(collapse = ",", 
-            x))
-        k <- length(x)
-        invert <- FALSE
-        if (k > p$n%/%2) {
-            invert <- TRUE
-            x <- setdiff(seq(p$n), x)
-            debugCat("revCombnGenElemC", p$n, ":", paste(collapse = ",", x))
-            k <- length(x)
-        }
-        out <- revCombnGenElemRcpp(x, p$n, p$ch)
-        if (invert == TRUE) {
-            out <- p$imirror - out
-        }
-        debugCat("revCombnGenElemC", "out", out)
-        out
-    }
-}
-
 #'@importFrom gmp as.bigq
 combnGenElemR <- function(x, n, k, ch) {
     i <- n
@@ -47,9 +6,6 @@ combnGenElemR <- function(x, n, k, ch) {
     if (class(ch) == "bigz") {
         ch <- gmp::as.bigq(ch)
         x <- gmp::as.bigq(x)
-        gmp <- TRUE
-    } else {
-        gmp <- FALSE
     }
     oldch <- ch
     while (j > 1) {
@@ -90,9 +46,6 @@ revCombnGenElemR <- function(x, n, ch) {
     ch <- ch * k/n
     if (class(ch) == "bigz") {
         ch <- gmp::as.bigq(ch)
-        gmp <- TRUE
-    } else {
-        gmp <- FALSE
     }
     out <- x[k] - x[k - 1]
     i <- 1
@@ -108,11 +61,10 @@ revCombnGenElemR <- function(x, n, ch) {
             j <- j + 1
         }
     }
-    if (gmp == TRUE) {
-        gmp::as.bigz(out)
-    } else {
-        out
+    if (class(out) == "bigq") {
+        out <- gmp::as.bigz(out)
     }
+    out
 }
 
 revCombnGenElemGenR <- function(p) {
