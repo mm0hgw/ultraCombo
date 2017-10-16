@@ -7,7 +7,6 @@ Depends:
     R (>= 3.3.2), Rcpp
 License: GPL-2
 LazyData: true
-Imports: bit, methods, utils
+Imports: bit, methods, utils, gmp
 RoxygenNote: 6.0.1
 LinkingTo: Rcpp
-Suggests: gmp
