@@ -18,7 +18,7 @@ ultraCombo <- function(i, n, k) {
     is.valid.nk(n, k)
     is.valid.index(i, n, k)
     i <- multiUnion(i)
-    if (length(i) == 0 || max(i) < .Machine$integer.max) 
+    if (length(i) == 0 || max(i) < .Machine$integer.max)
         i <- as.integer(i)
     combnGen <- combnGG(n, k)
     out <- list(i = i, len = length(i), n = as.integer(n), k = as.integer(k), Gen = function(x) {
@@ -52,14 +52,13 @@ ultraCombo <- function(i, n, k) {
 #'@param ... ignored
 #'@importFrom utils object.size
 #'@method print ultraCombo
-#'@inheritParams setdiff.combo
 #'#stopifnot(4==
 #'#intersect.combo(a,b,4)$i
 #'print(intersect.combo(seq(3)+3,b)$i)
 #'@export
 print.ultraCombo <- function(x, ...) {
-    cat(paste(sep = "\n", paste(sep = "", "ultraCombo object n=", x$n, " k=", x$k), 
-        paste("contains", x$len, "indices,"), paste("has size of", object.size(x), 
+    cat(paste(sep = "\n", paste(sep = "", "ultraCombo object n=", x$n, " k=", x$k),
+        paste("contains", x$len, "indices,"), paste("has size of", object.size(x),
             "bytes"), ""))
     invisible(x)
 }

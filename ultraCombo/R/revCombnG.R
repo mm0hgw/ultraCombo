@@ -51,7 +51,7 @@ revCombnG <- function(x, n) {
 revCombnGenGen <- function(FUN, n) {
     function(x) {
         debugCat("revCombnGenGen", n, paste(x, collapse = ","))
-        switch(is.valid.combination(x, n), vector(), FUN(sort(x)), sapply(seq(nrow(x)), 
+        switch(is.valid.combination(x, n), vector(), FUN(sort(x)), sapply(seq(nrow(x)),
             function(y) FUN(sort(x[y, ]))))
     }
 }

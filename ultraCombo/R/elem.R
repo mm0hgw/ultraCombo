@@ -20,7 +20,7 @@ combnGenElemGenC <- function(p) {
 revCombnGenElemGenC <- function(p) {
     debugCat("revCombnGenElemGenC", p$indexType, p$n)
     function(x) {
-        debugCat("revCombnGenElemC", p$indexType, p$n, ":", paste(collapse = ",", 
+        debugCat("revCombnGenElemC", p$indexType, p$n, ":", paste(collapse = ",",
             x))
         k <- length(x)
         invert <- FALSE
@@ -118,7 +118,7 @@ revCombnGenElemR <- function(x, n, ch) {
 revCombnGenElemGenR <- function(p) {
     debugCat("revCombnGenElemGenR", p$indexType, p$n)
     function(x) {
-        debugCat("revCombnGenElemR", p$indexType, p$n, ":", paste(collapse = ",", 
+        debugCat("revCombnGenElemR", p$indexType, p$n, ":", paste(collapse = ",",
             x))
         k <- length(x)
         invert <- FALSE
